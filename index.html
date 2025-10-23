@@ -16,6 +16,7 @@
       min-height: 100vh;
       padding: 20px;
     }
+    /* Correção: Garante que o texto dentro dos modais seja escuro */
     .modal-body {
       color: #333;
     }
@@ -102,6 +103,9 @@
           <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#activityModal">
             Gerar Atividade
           </button>
+          <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#verifyModal">
+            Corrigir Atividade
+          </button>
         </div>
 
       </div>
@@ -165,6 +169,42 @@
     </div>
   </div>
 
+  <div class="modal fade" id="verifyModal" tabindex="-1" aria-labelledby="verifyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="verifyModalLabel">Verificador de Gabarito</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+          <div class="mb-3">
+            <label for="teacherKeyFile" class="form-label fw-bold">1. Envie o PDF do Gabarito do Professor:</label>
+            <input type="file" id="teacherKeyFile" class="form-control" accept=".pdf">
+            <div class="form-text">Envie o PDF com as respostas corretas gerado pela IA.</div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="studentSheetFile" class="form-label fw-bold">2. Envie a Foto da Folha de Respostas do Aluno:</label>
+            <input type="file" id="studentSheetFile" class="form-control" accept="image/*">
+            <div class="form-text">Envie uma imagem (JPG, PNG) da folha preenchida.</div>
+          </div>
+  
+          <hr>
+  
+          <div id="gradeResult" class="text-center mt-3">
+            </div>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button id="verifyBtn" class="btn btn-warning">Verificar Nota</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   
   <script>
@@ -181,20 +221,27 @@
     const transcriptionArea = document.getElementById("transcription");
     const summaryArea = document.getElementById("summary");
     const visualizer = document.getElementById("visualizer");
+
+    // Seletores do Modal de Atividade
     const activityType = document.getElementById('activityType');
     const objectiveFormatGroup = document.getElementById('objectiveFormatGroup');
     const generateActivityBtn = document.getElementById('generateActivityBtn');
-    
     const activityModalEl = document.getElementById('activityModal');
     const activityModal = new bootstrap.Modal(activityModalEl);
 
+    // Seletores do Modal de Verificação
+    const verifyBtn = document.getElementById('verifyBtn');
+    const teacherKeyFileInput = document.getElementById('teacherKeyFile');
+    const studentSheetFileInput = document.getElementById('studentSheetFile');
+    const gradeResultDiv = document.getElementById('gradeResult');
+    
     // --- Variáveis de Estado ---
     let mediaRecorder, recordedChunks = [], recordedBlob;
     let audioContext, analyser, source, dataArray;
     let isRecording = false, isPaused = false;
     let timerInterval, seconds = 0;
 
-    // --- Funções de Gravação, Timer, Visualizador, Transcrição (COMPLETAS) ---
+    // --- Funções de Gravação, Timer, Visualizador, Transcrição ---
     function startTimer() {
         timerInterval = setInterval(() => {
             seconds++;
@@ -249,7 +296,7 @@
                     try {
                         const webmBlob = new Blob(recordedChunks, { type: "audio/webm" });
                         const arrayBuffer = await webmBlob.arrayBuffer();
-                        if (!audioContext || audioContext.state === 'closed') { audioContext = new (window.Audio-Context || window.webkitAudioContext)(); }
+                        if (!audioContext || audioContext.state === 'closed') { audioContext = new (window.AudioContext || window.webkitAudioContext)(); }
                         const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
                         const mp3Encoder = new lamejs.Mp3Encoder(1, audioBuffer.sampleRate, 128);
                         const pcmData = audioBuffer.getChannelData(0);
@@ -340,7 +387,7 @@
         }, 5000);
     }
 
-    // --- Lógica do Gerador de Atividades (ATUALIZADA) ---
+    // --- Lógica do Gerador de Atividades ---
     activityType.addEventListener('change', () => {
         objectiveFormatGroup.classList.toggle('d-none', activityType.value !== 'objetiva');
     });
@@ -370,16 +417,13 @@
 
             if (!response.ok) throw new Error('Falha no servidor.');
 
-            // Espera a resposta com 'activityText' e 'answers'
             const { activityText, answers } = await response.json();
 
-            // Se for dissertativa ou se a IA não retornar o gabarito, gera só 1 PDF
             if (options.type === 'dissertativa' || !answers || answers.length === 0) {
                  if(options.type !== 'dissertativa') alert("Atenção: O gabarito não foi retornado pelo servidor. Apenas o PDF do aluno será gerado.");
                  const studentDoc = generatePdf("Atividade_Aluno", activityText, options, null);
                  if (studentDoc) studentDoc.save("Atividade_Aluno.pdf");
             } else {
-                 // Gera os dois PDFs e compacta
                  await generatePdfsAndZip(activityText, answers, options);
             }
 
@@ -396,20 +440,12 @@
     // --- Funções de Geração de PDF e ZIP ---
 
     async function generatePdfsAndZip(activityText, answers, options) {
-        // 1. Gera o PDF do Aluno (sem respostas no gabarito)
         const studentDoc = generatePdf("Atividade para o Aluno", activityText, options, null);
-
-        // 2. Gera o PDF do Professor (com respostas no gabarito)
         const teacherDoc = generatePdf("Gabarito para o Professor", activityText, options, answers);
-
-        // 3. Compacta os dois PDFs em um arquivo .zip
         const zip = new JSZip();
         zip.file("Atividade_Aluno.pdf", studentDoc.output('blob'));
         zip.file("Gabarito_Professor.pdf", teacherDoc.output('blob'));
-
         const zipBlob = await zip.generateAsync({ type: "blob" });
-        
-        // 4. Cria um link temporário para baixar o .zip
         const link = document.createElement('a');
         link.href = URL.createObjectURL(zipBlob);
         link.download = 'Atividades.zip';
@@ -450,11 +486,10 @@
                 const circleX = startX + 25 + (options.indexOf(option) * colWidth);
                 const circleY = cursorY - circleRadius / 2;
                 
-                // Se 'answers' foi fornecido e a resposta corresponde, preenche o círculo
                 if (answers && answers[i - 1] && answers[i - 1] === option) {
-                    doc.circle(circleX, circleY, circleRadius, 'F'); // 'F' para Fill
+                    doc.circle(circleX, circleY, circleRadius, 'F');
                 } else {
-                    doc.circle(circleX, circleY, circleRadius, 'S'); // 'S' para Stroke
+                    doc.circle(circleX, circleY, circleRadius, 'S');
                 }
                 
                 doc.text(option, circleX, circleY, { align: 'center', baseline: 'middle' });
@@ -495,11 +530,10 @@
             drawAnswerSheet(doc, cursorY, parseInt(options.quantity), page, answers);
         }
         
-        // Retorna o objeto do documento para ser usado depois
         return doc;
     }
 
-    // Funções de download simples
+    // --- Funções de download simples ---
     downloadTranscriptionBtn.addEventListener("click", () => {
         const doc = generatePdf("Transcricao", transcriptionArea.value, {});
         if(doc) doc.save("Transcricao.pdf");
@@ -508,6 +542,49 @@
         const doc = generatePdf("Resumo", summaryArea.value, {});
         if(doc) doc.save("Resumo.pdf");
     });
-</script>
+
+    // --- Lógica do Verificador de Gabarito ---
+    verifyBtn.addEventListener('click', async () => {
+        const teacherFile = teacherKeyFileInput.files[0];
+        const studentFile = studentSheetFileInput.files[0];
+
+        if (!teacherFile || !studentFile) {
+            alert('Por favor, envie os dois arquivos para continuar.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('teacherKey', teacherFile);
+        formData.append('studentSheet', studentFile);
+
+        verifyBtn.disabled = true;
+        verifyBtn.textContent = 'Verificando...';
+        gradeResultDiv.innerHTML = `<div class="spinner-border text-warning" role="status"><span class="visually-hidden">Loading...</span></div>`;
+
+        try {
+            const response = await fetch("https://voz-transcricao.onrender.com/verify-answers", {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Falha no servidor.');
+            }
+
+            const { grade } = await response.json();
+
+            gradeResultDiv.innerHTML = `<h3 class="text-success">Nota Final: ${grade}</h3>`;
+
+        } catch (error) {
+            console.error("Erro ao verificar gabarito:", error);
+            gradeResultDiv.innerHTML = `<p class="text-danger"><b>Erro:</b> ${error.message}</p>`;
+        } finally {
+            verifyBtn.disabled = false;
+            verifyBtn.textContent = 'Verificar Nota';
+        }
+    });
+
+  </script>
 </body>
 </html>
