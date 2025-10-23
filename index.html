@@ -27,6 +27,17 @@
       font-weight: 700;
       text-align: center;
     }
+    .container-logo {
+  display: flex;             /* Ativa o modo "Flexbox" */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;     /* Centraliza verticalmente */
+}
+
+.logo {
+  width: 100px; /* <-- DIMINUA AQUI (ajuste o valor como quiser) */
+  margin: 15px;
+  /* Não precisa de height, o navegador ajusta a proporção */
+}
     .card {
       max-width: 900px;
       margin: 0 auto;
@@ -64,7 +75,9 @@
 <body>
 
   <div class="container-fluid">
-    <h2 class="mb-4">Gravador e Assistente de Conteúdo</h2>
+    <div class="container-logo">
+  <img src="Logo para Studio ou Produtor de Áudio Minimalista.png" alt="Logo da Aplicação" class="logo">
+</div>
 
     <div class="card">
       <div class="card-body d-flex flex-column">
