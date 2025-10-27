@@ -9,61 +9,196 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
+  
   <style>
+    :root {
+        --primary-accent: #1e3c72;
+        --secondary-accent: #1c8077;
+        --light-bg: #f0f4f8;
+        --card-bg: #ffffff;
+        --text-dark: #212529;
+        --text-muted: #6c757d;
+        --border-color: #e9ecef;
+    }
+
     body {
-      background: linear-gradient(135deg, #1c8077, #259e7a);
-      color: #fff;
+      background: linear-gradient(170deg, var(--light-bg), var(--card-bg) 30%);
+      color: var(--text-dark);
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       min-height: 100vh;
       padding: 20px;
     }
-    .modal-body { color: #333; }
-    .modal-body h1, .modal-body h2, .modal-body h3, .modal-body h4, .modal-body h5, .modal-body h6, .modal-body p, .modal-body label { color: #333; }
-    h2, h3 { font-weight: 700; text-align: center; }
 
+    .modal-body { color: var(--text-dark); }
+    .modal-body h1, .modal-body h2, .modal-body h3, .modal-body h4, .modal-body h5, .modal-body h6, .modal-body p, .modal-body label { color: var(--text-dark); }
+    
     .logo {
-      width: 100px;
-      margin: 15px;
+      width: 80px;
+      margin-bottom: 10px;
     }
+
     .card {
-      /* <<< MUDANÇA AQUI: Aumentando a largura >>> */
-      width: 95%; /* Ocupa 95% da largura disponível */
-      max-width: 1400px; /* Mas no máximo 1200px */
-      margin: 0 auto;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      background: #fff;
-      color: #333;
+      width: 95%;
+      max-width: 1600px; 
+      margin: 20px auto;
+      box-shadow: 0 10px 30px rgba(0, 40, 100, 0.08);
+      background: var(--card-bg);
+      color: var(--text-dark);
       border: none;
+      border-radius: 16px;
+      overflow: hidden;
     }
+
+    .card-body {
+        padding: 2.5rem;
+    }
+
+    .app-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid var(--border-color);
+    }
+
+    .app-header h1 {
+        color: var(--primary-accent);
+        font-weight: 700;
+    }
+
+    #tutorialBtn {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        border: none;
+    }
+
+    #transcribeBtn {
+        background-color: var(--primary-accent);
+        border-color: var(--primary-accent);
+        padding: 12px 30px;
+        font-size: 1.1rem;
+        width: 100%; 
+    }
+    #transcribeBtn:hover {
+        background-color: #1a335e;
+        border-color: #1a335e;
+    }
+
     button {
       border-radius: 50px;
       font-weight: 600;
-      padding: 10px 20px;
-      transition: transform 0.2s ease;
+      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 0.5em;
     }
-    button:hover { transform: scale(1.05); }
-    #timer { font-weight: bold; font-size: 1.2rem; margin-left: 15px; color: #1e7248; }
-    #visualizer { width: 100%; height: 100px; background: #f1f1f1; border-radius: 12px; }
-    textarea { border-radius: 12px; resize: none; box-shadow: inset 0 3px 8px rgba(0,0,0,0.1); }
+    
+    button:not(:disabled):hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    #timer { 
+        font-weight: bold; 
+        font-size: 1.2rem; 
+        margin-left: 15px; 
+        color: var(--secondary-accent);
+    }
+    
+    #visualizer { 
+        width: 100%; 
+        height: 100px; 
+        background: #fdfdfd; 
+        border-radius: 12px; 
+        border: 1px solid var(--border-color);
+    }
+
+    textarea { 
+        border-radius: 12px; 
+        resize: none; 
+        background-color: #fcfcfd;
+        border: 1px solid #ced4da;
+    }
+    textarea:read-only {
+        background-color: #f5f7f9;
+        box-shadow: none;
+    }
 
     .section-title {
-        color: #6c757d;
-        font-size: 0.9em;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-top: 1.5rem;
-        margin-bottom: 0.5rem;
-        text-align: center;
-    }
-     hr {
-        margin-top: 1.5rem;
+        color: var(--primary-accent);
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-transform: none;
+        letter-spacing: 0;
+        margin-top: 1rem;
         margin-bottom: 1.5rem;
-     }
+        text-align: left;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--border-color);
+    }
+    .col-lg-5 .section-title:first-of-type,
+    .col-lg-7 .section-title:first-of-type {
+        margin-top: 0;
+    }
+
+
+    .separator-ou {
+        text-align: center;
+        margin: 1.5rem 0;
+        color: var(--text-muted);
+        font-weight: 600;
+    }
+
+    .form-control[type="file"] {
+        border-radius: 50px;
+        padding: 10px 20px;
+    }
+    .form-control[type="file"]::file-selector-button {
+        border-radius: 50px;
+        font-weight: 600;
+        padding: 10px 20px;
+        transition: all 0.2s ease;
+        background-color: var(--secondary-accent);
+        color: white;
+        border: none;
+        margin-right: 15px;
+    }
+    .form-control[type="file"]::file-selector-button:hover {
+        transform: scale(1.03);
+        cursor: pointer;
+    }
+    
     .spinner-beside {
-        margin-left: 8px;
+      margin-left: 8px;
+    }
+
+    /* --- ESTILOS DAS 2 COLUNAS CORRIGIDOS --- */
+    
+    #right-column {
+        border-left: 2px solid var(--border-color);
+        padding-left: 2.5rem; 
+    }
+
+    /* Esta é a mudança principal:
+      A classe .flex-grow-1 (do Bootstrap) já está nos textareas.
+      Aqui garantimos que eles tenham uma altura mínima, mas 
+      deixamos o flexbox controlar a altura máxima.
+    */
+    #right-column .flex-grow-1 textarea {
+        min-height: 150px; /* Altura mínima para cada caixa */
+    }
+
+    @media (max-width: 991.98px) { 
+        #right-column {
+            border-left: none;
+            padding-left: 0;
+            margin-top: 2.5rem; 
+        }
+
+        #right-column .flex-grow-1 textarea {
+             min-height: 150px; /* Manter altura mínima no mobile */
+        }
     }
   </style>
 </head>
@@ -72,70 +207,81 @@
   <div class="container-fluid">
 
     <div class="card mt-4">
-      <div class="card-body d-flex flex-column">
+      <div class="card-body">
 
-        <div class="text-center mb-4 position-relative"> <img src="logo.png" alt="NeuroVoz Logo" class="logo mb-2">
-  <h1 class="h4 d-inline-block" style="color: #1e3c72;">NeuroVoz: Gravador Inteligente</h1>
-  
-  <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle position-absolute top-0 end-0 m-2" id="tutorialBtn" title="Como usar?">
-    <i class="bi bi-question-lg"></i>
-  </button>
+        <div class="app-header">
+          <img src="logo.png" alt="NeuroVoz Logo" class="logo">
+          <h1 class="h2">NeuroVoz: Gravador Inteligente</h1>
+          
+          <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle" id="tutorialBtn" title="Como usar?">
+            <i class="bi bi-question-lg"></i>
+          </button>
+        </div>
+
+        <div class="row mt-4">
+
+          <div class="col-lg-5">
+            
+            <h3 class="section-title">1. Grave ou Envie seu Áudio</h3>
+            <div class="d-flex flex-wrap justify-content-center align-items-center mb-4 gap-2">
+              <button id="recordBtn" class="btn btn-success"><i class="bi bi-mic-fill"></i> Gravar</button>
+              <button id="stopBtn" class="btn btn-danger" disabled><i class="bi bi-stop-fill"></i> Parar</button>
+              <span id="timer">00:00</span>
+            </div>
+            <canvas id="visualizer" class="mb-3"></canvas>
+            
+            <div class="separator-ou">
+              <span>OU</span>
+            </div>
+            
+            <div class="mb-4">
+              <label for="audioFile" class="form-label fw-bold visually-hidden">Envie um arquivo de áudio:</label>
+              <input type="file" id="audioFile" class="form-control" accept="audio/*">
+            </div>
+
+            <h3 class="section-title">2. Processe o Áudio</h3>
+            <div class="d-flex justify-content-center my-3">
+              <button id="transcribeBtn" class="btn btn-primary px-5 btn-lg">
+                <i class="bi bi-cpu-fill"></i> Transcrever e Resumir
+                <span class="spinner-border spinner-border-sm spinner-beside d-none" role="status" aria-hidden="true"></span>
+              </button>
+            </div>
+
+          </div>
+          <div class="col-lg-7 d-flex flex-column" id="right-column">
+
+            <h3 class="section-title">3. Resultados</h3>
+            
+            <div class="mb-4 d-flex flex-column flex-grow-1"> 
+              <label for="transcription" class="form-label fw-bold">Transcrição:</label>
+              <textarea id="transcription" class="form-control flex-grow-1" readonly placeholder="A transcrição aparecerá aqui..."></textarea>
+            </div>
+            
+            <div class="mb-3 d-flex flex-column flex-grow-1">
+              <label for="summary" class="form-label fw-bold">Resumo em Tópicos:</label>
+              <textarea id="summary" class="form-control flex-grow-1" readonly placeholder="O resumo em tópicos aparecerá aqui..."></textarea>
+            </div>
+
+            <h3 class="section-title">4. Próximos Passos</h3>
+            
+            <div class="d-flex justify-content-center flex-wrap gap-2 pt-3">
+              <button id="downloadTranscriptionBtn" class="btn btn-outline-secondary"><i class="bi bi-download"></i> Baixar Transcrição</button>
+              <button id="downloadSummaryBtn" class="btn btn-outline-secondary"><i class="bi bi-download"></i> Baixar Resumo</button>
+              <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#activityModal">
+                <i class="bi bi-journal-plus"></i> Gerar Atividade
+              </button>
+              <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#verifyModal">
+                <i class="bi bi-check2-square"></i> Corrigir Atividade
+              </button>
+            </div>
+
+          </div>
+          </div>
+        </div>
+    </div>
   </div>
 
-        <hr>
-
-        <h5 class="section-title">1. Grave ou Envie seu Áudio</h5>
-        <div class="d-flex flex-wrap justify-content-center align-items-center mb-4 gap-2">
-          <button id="recordBtn" class="btn btn-success"><i class="bi bi-mic-fill"></i> Gravar</button>
-          <button id="stopBtn" class="btn btn-danger" disabled><i class="bi bi-stop-fill"></i> Parar</button>
-          <span id="timer">00:00</span>
-        </div>
-        <canvas id="visualizer" class="mb-3"></canvas>
-        <div class="mb-4 text-center">
-          <span class="text-muted">-- OU --</span>
-        </div>
-        <div class="mb-4">
-          <label for="audioFile" class="form-label fw-bold visually-hidden">Envie um arquivo de áudio:</label>
-          <input type="file" id="audioFile" class="form-control" accept="audio/*">
-        </div>
-
-        <hr>
-
-        <h5 class="section-title">2. Processe o Áudio</h5>
-        <div class="d-flex justify-content-center my-3">
-          <button id="transcribeBtn" class="btn btn-primary px-5 btn-lg">
-            <i class="bi bi-cpu-fill"></i> Transcrever e Resumir
-            <span class="spinner-border spinner-border-sm spinner-beside d-none" role="status" aria-hidden="true"></span>
-          </button>
-        </div>
-
-        <hr>
-
-        <h5 class="section-title">3. Resultados</h5>
-        <div class="row flex-grow-1">
-          <div class="col-12 col-md-6 mb-3 d-flex flex-column">
-            <label for="transcription" class="form-label fw-bold">Transcrição:</label>
-            <textarea id="transcription" class="form-control flex-grow-1" rows="10" readonly placeholder="A transcrição aparecerá aqui..."></textarea> </div>
-          <div class="col-12 col-md-6 mb-3 d-flex flex-column">
-            <label for="summary" class="form-label fw-bold">Resumo em Tópicos:</label>
-            <textarea id="summary" class="form-control flex-grow-1" rows="10" readonly placeholder="O resumo em tópicos aparecerá aqui..."></textarea> </div>
-        </div>
-
-        <hr>
-
-        <h5 class="section-title">4. Próximos Passos</h5>
-        <div class="d-flex justify-content-center flex-wrap gap-2 mt-auto pt-3">
-          <button id="downloadTranscriptionBtn" class="btn btn-outline-secondary"><i class="bi bi-download"></i> Baixar Transcrição</button>
-          <button id="downloadSummaryBtn" class="btn btn-outline-secondary"><i class="bi bi-download"></i> Baixar Resumo</button>
-          <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#activityModal">
-            <i class="bi bi-journal-plus"></i> Gerar Atividade
-          </button>
-          <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#verifyModal">
-            <i class="bi bi-check2-square"></i> Corrigir Atividade
-          </button>
-        </div>
-
-      </div> </div> </div> <div class="modal fade" id="activityModal" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+  <div class="modal fade" id="activityModal" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -211,7 +357,7 @@
           </div>
           <hr>
           <div id="gradeResult" class="text-center mt-3">
-            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -223,49 +369,47 @@
       </div>
     </div>
   </div>
-  </div>
+  
+  <div class="modal fade" id="tutorialModal" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"> 
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tutorialModalLabel"><i class="bi bi-info-circle-fill me-2"></i>Como Usar o NeuroVoz</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
 
-<div class="modal fade" id="tutorialModal" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg"> <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="tutorialModalLabel"><i class="bi bi-info-circle-fill me-2"></i>Como Usar o NeuroVoz</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
+          <h6>Passo 1: Forneça o Áudio</h6>
+          <ul>
+            <li><strong>Gravando:</strong> Clique no botão verde <button class="btn btn-sm btn-success disabled"><i class="bi bi-mic-fill"></i>Gravar</button>. Fale o que desejar. Clique em <button class="btn btn-sm btn-danger disabled"><i class="bi bi-stop-fill"></i>Parar</button> quando terminar.</li>
+            <li><strong>Enviando Arquivo:</strong> Clique em "Escolher arquivo", selecione um arquivo de áudio (MP3, WAV, etc.) do seu computador.</li>
+          </ul>
 
-        <h6>Passo 1: Forneça o Áudio</h6>
-        <ul>
-          <li><strong>Gravando:</strong> Clique no botão verde <button class="btn btn-sm btn-success disabled"><i class="bi bi-mic-fill"></i>Gravar</button>. Fale o que desejar. Clique em <button class="btn btn-sm btn-danger disabled"><i class="bi bi-stop-fill"></i>Parar</button> quando terminar.</li>
-          <li><strong>Enviando Arquivo:</strong> Clique em "Escolher arquivo", selecione um arquivo de áudio (MP3, WAV, etc.) do seu computador.</li>
-        </ul>
+          <hr>
 
-        <hr>
+          <h6>Passo 2: Processe o Áudio</h6>
+          <ul>
+            <li>Clique no botão azul <button class="btn btn-sm btn-primary disabled"><i class="bi bi-cpu-fill"></i>Transcrever e Resumir</button>.</li>
+            <li>Aguarde o processamento. O texto aparecerá nas caixas "Transcrição" e "Resumo em Tópicos".</li>
+          </ul>
 
-        <h6>Passo 2: Processe o Áudio</h6>
-        <ul>
-          <li>Clique no botão azul <button class="btn btn-sm btn-primary disabled"><i class="bi bi-cpu-fill"></i>Transcrever e Resumir</button>.</li>
-          <li>Aguarde o processamento. O texto aparecerá nas caixas "Transcrição" e "Resumo em Tópicos".</li>
-        </ul>
+          <hr>
 
-        <hr>
+          <h6>Passo 3: Use os Resultados</h6>
+          <p>Com a transcrição e o resumo prontos, você pode:</p>
+          <ul>
+            <li><strong>Baixar:</strong> Use os botões <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-download"></i>Baixar Transcrição</button> ou <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-download"></i>Baixar Resumo</button> para salvar os textos em PDF.</li>
+            <li><strong>Gerar Atividade:</strong> Clique em <button class="btn btn-sm btn-outline-info disabled"><i class="bi bi-journal-plus"></i>Gerar Atividade</button>, configure as opções (tipo, dificuldade, etc.) e clique em "Gerar PDF" para criar uma atividade baseada no resumo. Você receberá um arquivo .zip com a versão do aluno e a do professor (com gabarito).</li>
+            <li><strong>Corrigir Atividade:</strong> Clique em <button class="btn btn-sm btn-outline-warning disabled"><i class="bi bi-check2-square"></i>Corrigir Atividade</button>, envie o PDF do professor e a(s) foto(s) da folha de respostas do aluno, e clique em "Verificar Nota" para obter a correção automática, (caso o aluno não ter responido desenhe um X GRANDE em vermelho ao lado).</li>
+          </ul>
 
-        <h6>Passo 3: Use os Resultados</h6>
-        <p>Com a transcrição e o resumo prontos, você pode:</p>
-        <ul>
-          <li><strong>Baixar:</strong> Use os botões <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-download"></i>Baixar Transcrição</button> ou <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-download"></i>Baixar Resumo</button> para salvar os textos em PDF.</li>
-          <li><strong>Gerar Atividade:</strong> Clique em <button class="btn btn-sm btn-outline-info disabled"><i class="bi bi-journal-plus"></i>Gerar Atividade</button>, configure as opções (tipo, dificuldade, etc.) e clique em "Gerar PDF" para criar uma atividade baseada no resumo. Você receberá um arquivo .zip com a versão do aluno e a do professor (com gabarito).</li>
-          <li><strong>Corrigir Atividade:</strong> Clique em <button class="btn btn-sm btn-outline-warning disabled"><i class="bi bi-check2-square"></i>Corrigir Atividade</button>, envie o PDF do professor e a(s) foto(s) da folha de respostas do aluno, e clique em "Verificar Nota" para obter a correção automática, (caso o aluno não ter responido desenhe um X GRANDE em vermelho ao lado).</li>
-          
-        </ul>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -339,10 +483,10 @@
             requestAnimationFrame(draw);
             if (!analyser) return;
             analyser.getByteTimeDomainData(dataArray);
-            ctx.fillStyle = "#f1f1f1";
+            ctx.fillStyle = "#fdfdfd"; 
             ctx.fillRect(0, 0, visualizer.width, visualizer.height);
             ctx.lineWidth = 2;
-            ctx.strokeStyle = "#1e3c72";
+            ctx.strokeStyle = "#1e3c72"; 
             ctx.beginPath();
             const sliceWidth = visualizer.width * 1.0 / analyser.fftSize;
             let x = 0;
@@ -498,9 +642,9 @@
         showSpinner('generateActivityBtn');
         const summaryText = summaryArea.value;
          if (!summaryText.trim()) {
-              alert("É preciso ter um resumo para criar uma atividade!");
-              hideSpinner('generateActivityBtn');
-              return;
+               alert("É preciso ter um resumo para criar uma atividade!");
+               hideSpinner('generateActivityBtn');
+               return;
          }
         const options = {
             type: activityType.value,
@@ -513,27 +657,27 @@
 
          try {
              const response = await fetch("https://voz-transcricao.onrender.com/generate-activity", { // Sua URL
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ summaryText, options }),
-            });
-            if (!response.ok) throw new Error('Falha no servidor ao gerar atividade.');
+                 method: 'POST',
+                 headers: { 'Content-Type': 'application/json' },
+                 body: JSON.stringify({ summaryText, options }),
+             });
+             if (!response.ok) throw new Error('Falha no servidor ao gerar atividade.');
 
-            const { activityText, answers } = await response.json();
+             const { activityText, answers } = await response.json();
 
-            if (options.type === 'dissertativa' || !answers || answers.length === 0) {
-                 if(options.type !== 'dissertativa') alert("Atenção: O gabarito não foi retornado. Apenas o PDF do aluno será gerado.");
-                 const studentDoc = generatePdf("Atividade_Aluno", activityText, options, null);
-                 if (studentDoc) studentDoc.save("Atividade_Aluno.pdf");
-            } else {
-                 await generatePdfsAndZip(activityText, answers, options);
-            }
-             activityModal.hide();
+             if (options.type === 'dissertativa' || !answers || answers.length === 0) {
+                  if(options.type !== 'dissertativa') alert("Atenção: O gabarito não foi retornado. Apenas o PDF do aluno será gerado.");
+                  const studentDoc = generatePdf("Atividade_Aluno", activityText, options, null);
+                  if (studentDoc) studentDoc.save("Atividade_Aluno.pdf");
+             } else {
+                  await generatePdfsAndZip(activityText, answers, options);
+             }
+              activityModal.hide();
          } catch (error) {
-              console.error("Erro ao gerar atividade:", error);
-             alert("Ocorreu um erro ao gerar a atividade.");
+               console.error("Erro ao gerar atividade:", error);
+              alert("Ocorreu um erro ao gerar a atividade.");
          } finally {
-              hideSpinner('generateActivityBtn');
+               hideSpinner('generateActivityBtn');
          }
     });
 
@@ -602,7 +746,7 @@
         return cursorY;
     }
     function generatePdf(title, text, options = {}, answers = null) {
-        if (!text || !text.trim()) { // Verifica se text é null, undefined ou vazio
+        if (!text || !text.trim()) { 
             console.error("Tentativa de gerar PDF sem texto válido.");
             return null;
         }
@@ -640,7 +784,7 @@
 
     // --- Funções de download simples ---
     downloadTranscriptionBtn.addEventListener("click", () => {
-        const textToDownload = transcriptionArea.value; // Pega o valor atual
+        const textToDownload = transcriptionArea.value; 
         if (!textToDownload || !textToDownload.trim()){
             alert("Não há transcrição para baixar.");
             return;
@@ -649,7 +793,7 @@
         if (doc) doc.save("Transcricao.pdf");
     });
     downloadSummaryBtn.addEventListener("click", () => {
-         const textToDownload = summaryArea.value; // Pega o valor atual
+         const textToDownload = summaryArea.value; 
         if (!textToDownload || !textToDownload.trim()){
             alert("Não há resumo para baixar.");
             return;
@@ -678,39 +822,39 @@
 
          try {
              const response = await fetch("https://voz-transcricao.onrender.com/verify-answers", { // Sua URL
-                method: 'POST',
-                body: formData,
-            });
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Falha no servidor.');
-            }
-            const { individualGrades } = await response.json();
+                 method: 'POST',
+                 body: formData,
+             });
+             if (!response.ok) {
+                 const errorData = await response.json();
+                 throw new Error(errorData.error || 'Falha no servidor.');
+             }
+             const { individualGrades } = await response.json();
 
-            if (individualGrades && individualGrades.length > 0) {
-                let resultsHtml = '<h5 class="text-success mb-3">Resultados Individuais:</h5>';
-                resultsHtml += '<ul class="list-group text-start">';
-                individualGrades.forEach(result => {
-                    resultsHtml += `<li class="list-group-item d-flex justify-content-between align-items-center">
-                                      ${result.fileName}
-                                      <span class="badge bg-${result.grade.startsWith('Erro') ? 'danger' : 'primary'} rounded-pill">${result.grade}</span>
-                                    </li>`;
-                });
-                resultsHtml += '</ul>';
-                gradeResultDiv.innerHTML = resultsHtml;
-            } else {
-                 gradeResultDiv.innerHTML = '<p class="text-warning">Nenhuma nota foi retornada.</p>';
-            }
+             if (individualGrades && individualGrades.length > 0) {
+                 let resultsHtml = '<h5 class="text-success mb-3">Resultados Individuais:</h5>';
+                 resultsHtml += '<ul class="list-group text-start">';
+                 individualGrades.forEach(result => {
+                     resultsHtml += `<li class="list-group-item d-flex justify-content-between align-items-center">
+                                         ${result.fileName}
+                                         <span class="badge bg-${result.grade.startsWith('Erro') ? 'danger' : 'primary'} rounded-pill">${result.grade}</span>
+                                       </li>`;
+                 });
+                 resultsHtml += '</ul>';
+                 gradeResultDiv.innerHTML = resultsHtml;
+             } else {
+                  gradeResultDiv.innerHTML = '<p class="text-warning">Nenhuma nota foi retornada.</p>';
+             }
          } catch (error) {
-              console.error("Erro ao verificar gabarito:", error);
-             gradeResultDiv.innerHTML = `<p class="text-danger"><b>Erro:</b> ${error.message}</p>`;
+               console.error("Erro ao verificar gabarito:", error);
+              gradeResultDiv.innerHTML = `<p class="text-danger"><b>Erro:</b> ${error.message}</p>`;
          } finally {
-              hideSpinner('verifyBtn');
+               hideSpinner('verifyBtn');
          }
     });
-    if (tutorialBtn) { // Verifica se o botão existe antes de adicionar o listener
+    if (tutorialBtn) { 
         tutorialBtn.addEventListener('click', () => {
-            tutorialModal.show(); // Mostra o modal de tutorial ao clicar
+            tutorialModal.show(); 
         });
     }
 
