@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeuroVoz - Gravador Inteligente</title>
+  <title>NeuroVoz: Do Áudio à Avaliação</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -20,7 +20,6 @@
         --text-muted: #6c757d;
         --border-color: #e9ecef;
     }
-
     body {
       background: linear-gradient(170deg, var(--light-bg), var(--card-bg) 30%);
       color: var(--text-dark);
@@ -28,15 +27,9 @@
       min-height: 100vh;
       padding: 20px;
     }
-
     .modal-body { color: var(--text-dark); }
     .modal-body h1, .modal-body h2, .modal-body h3, .modal-body h4, .modal-body h5, .modal-body h6, .modal-body p, .modal-body label { color: var(--text-dark); }
-    
-    .logo {
-      width: 80px;
-      margin-bottom: 10px;
-    }
-
+    .logo { width: 80px; margin-bottom: 10px; }
     .card {
       width: 95%;
       max-width: 1600px; 
@@ -48,11 +41,7 @@
       border-radius: 16px;
       overflow: hidden;
     }
-
-    .card-body {
-        padding: 2.5rem;
-    }
-
+    .card-body { padding: 2.5rem; }
     .app-header {
         text-align: center;
         margin-bottom: 1.5rem;
@@ -60,19 +49,13 @@
         padding-bottom: 1.5rem;
         border-bottom: 2px solid var(--border-color);
     }
-
-    .app-header h1 {
-        color: var(--primary-accent);
-        font-weight: 700;
-    }
-
+    .app-header h1 { color: var(--primary-accent); font-weight: 700; }
     #tutorialBtn {
         position: absolute;
         top: -10px;
         right: -10px;
         border: none;
     }
-
     #transcribeBtn {
         background-color: var(--primary-accent);
         border-color: var(--primary-accent);
@@ -80,11 +63,7 @@
         font-size: 1.1rem;
         width: 100%; 
     }
-    #transcribeBtn:hover {
-        background-color: #1a335e;
-        border-color: #1a335e;
-    }
-
+    #transcribeBtn:hover { background-color: #1a335e; border-color: #1a335e; }
     button {
       border-radius: 50px;
       font-weight: 600;
@@ -93,38 +72,14 @@
       align-items: center;
       gap: 0.5em;
     }
-    
     button:not(:disabled):hover {
         transform: scale(1.03);
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-    
-    #timer { 
-        font-weight: bold; 
-        font-size: 1.2rem; 
-        margin-left: 15px; 
-        color: var(--secondary-accent);
-    }
-    
-    #visualizer { 
-        width: 100%; 
-        height: 100px; 
-        background: #fdfdfd; 
-        border-radius: 12px; 
-        border: 1px solid var(--border-color);
-    }
-
-    textarea { 
-        border-radius: 12px; 
-        resize: none; 
-        background-color: #fcfcfd;
-        border: 1px solid #ced4da;
-    }
-    textarea:read-only {
-        background-color: #f5f7f9;
-        box-shadow: none;
-    }
-
+    #timer { font-weight: bold; font-size: 1.2rem; margin-left: 15px; color: var(--secondary-accent); }
+    #visualizer { width: 100%; height: 100px; background: #fdfdfd; border-radius: 12px; border: 1px solid var(--border-color); }
+    textarea { border-radius: 12px; resize: none; background-color: #fcfcfd; border: 1px solid #ced4da; }
+    textarea:read-only { background-color: #f5f7f9; box-shadow: none; }
     .section-title {
         color: var(--primary-accent);
         font-size: 1.3rem;
@@ -138,22 +93,9 @@
         border-bottom: 2px solid var(--border-color);
     }
     .col-lg-5 .section-title:first-of-type,
-    .col-lg-7 .section-title:first-of-type {
-        margin-top: 0;
-    }
-
-
-    .separator-ou {
-        text-align: center;
-        margin: 1.5rem 0;
-        color: var(--text-muted);
-        font-weight: 600;
-    }
-
-    .form-control[type="file"] {
-        border-radius: 50px;
-        padding: 10px 20px;
-    }
+    .col-lg-7 .section-title:first-of-type { margin-top: 0; }
+    .separator-ou { text-align: center; margin: 1.5rem 0; color: var(--text-muted); font-weight: 600; }
+    .form-control[type="file"] { border-radius: 50px; padding: 10px 20px; }
     .form-control[type="file"]::file-selector-button {
         border-radius: 50px;
         font-weight: 600;
@@ -164,29 +106,21 @@
         border: none;
         margin-right: 15px;
     }
-    .form-control[type="file"]::file-selector-button:hover {
-        transform: scale(1.03);
-        cursor: pointer;
+    .form-control[type="file"]::file-selector-button:hover { transform: scale(1.03); cursor: pointer; }
+    .spinner-beside { margin-left: 8px; }
+    #right-column { border-left: 2px solid var(--border-color); padding-left: 2.5rem; }
+    #right-column .flex-grow-1 textarea { min-height: 150px; }
+    .illustration-container {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
     }
-    
-    .spinner-beside {
-      margin-left: 8px;
-    }
-
-    /* --- ESTILOS DAS 2 COLUNAS CORRIGIDOS --- */
-    
-    #right-column {
-        border-left: 2px solid var(--border-color);
-        padding-left: 2.5rem; 
-    }
-
-    /* Esta é a mudança principal:
-      A classe .flex-grow-1 (do Bootstrap) já está nos textareas.
-      Aqui garantimos que eles tenham uma altura mínima, mas 
-      deixamos o flexbox controlar a altura máxima.
-    */
-    #right-column .flex-grow-1 textarea {
-        min-height: 150px; /* Altura mínima para cada caixa */
+    .illustration-container img {
+      max-width: 80%;
+      height: auto;
+      opacity: 0.75;
     }
 
     @media (max-width: 991.98px) { 
@@ -195,89 +129,92 @@
             padding-left: 0;
             margin-top: 2.5rem; 
         }
-
-        #right-column .flex-grow-1 textarea {
-             min-height: 150px; /* Manter altura mínima no mobile */
-        }
+        #right-column .flex-grow-1 textarea { min-height: 150px; }
+        .illustration-container { display: none; }
     }
   </style>
 </head>
 <body>
 
   <div class="container-fluid">
-
     <div class="card mt-4">
       <div class="card-body">
-
         <div class="app-header">
-          <img src="Logo.png" alt="NeuroVoz Logo" class="logo">
-          <h1 class="h2">NeuroVoz: Gravador Inteligente</h1>
-          
+          <img src="logo.png" alt="NeuroVoz Logo" class="logo">
+          <h1 class="h2">NeuroVoz: Do Áudio à Avaliação</h1>
           <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle" id="tutorialBtn" title="Como usar?">
             <i class="bi bi-question-lg"></i>
           </button>
         </div>
-
         <div class="row mt-4">
-
-          <div class="col-lg-5">
-            
-            <h3 class="section-title">1. Grave ou Envie seu Áudio</h3>
-            <div class="d-flex flex-wrap justify-content-center align-items-center mb-4 gap-2">
-              <button id="recordBtn" class="btn btn-success"><i class="bi bi-mic-fill"></i> Gravar</button>
-              <button id="stopBtn" class="btn btn-danger" disabled><i class="bi bi-stop-fill"></i> Parar</button>
-              <span id="timer">00:00</span>
+          
+          <div class="col-lg-5 d-flex flex-column">
+            <div>
+              <h3 class="section-title">1. Grave ou Envie seu Áudio</h3>
+              <div class="d-flex flex-wrap justify-content-center align-items-center mb-4 gap-2">
+                <button id="recordBtn" class="btn btn-success"><i class="bi bi-mic-fill"></i> Gravar</button>
+                <button id="stopBtn" class="btn btn-danger" disabled><i class="bi bi-stop-fill"></i> Parar</button>
+                <span id="timer">00:00</span>
+              </div>
+              <canvas id="visualizer" class="mb-3"></canvas>
+              <div class="separator-ou">
+                <span>OU</span>
+              </div>
+              <div class="mb-4">
+                <label for="audioFile" class="form-label fw-bold visually-hidden">Envie um arquivo de áudio:</label>
+                <input type="file" id="audioFile" class="form-control" accept="audio/*">
+              </div>
             </div>
-            <canvas id="visualizer" class="mb-3"></canvas>
-            
-            <div class="separator-ou">
-              <span>OU</span>
+            <div class="illustration-container">
+              <img src="https://storage.googleapis.com/gemini-prod-ui-images/a6c5ea3e-967a-42a1-9426-53d4f3b163d0" alt="Ilustração de onda sonora">
             </div>
-            
-            <div class="mb-4">
-              <label for="audioFile" class="form-label fw-bold visually-hidden">Envie um arquivo de áudio:</label>
-              <input type="file" id="audioFile" class="form-control" accept="audio/*">
-            </div>
-
-            <h3 class="section-title">2. Processe o Áudio</h3>
+          </div>
+          
+          <div class="col-lg-7 d-flex flex-column" id="right-column">
+            <h3 class="section-title">2. Resultados</h3>
             <div class="d-flex justify-content-center my-3">
               <button id="transcribeBtn" class="btn btn-primary px-5 btn-lg">
                 <i class="bi bi-cpu-fill"></i> Transcrever e Resumir
                 <span class="spinner-border spinner-border-sm spinner-beside d-none" role="status" aria-hidden="true"></span>
               </button>
             </div>
-
-          </div>
-          <div class="col-lg-7 d-flex flex-column" id="right-column">
-
-            <h3 class="section-title">3. Resultados</h3>
+            <hr class="my-4">
             
             <div class="mb-4 d-flex flex-column flex-grow-1"> 
               <label for="transcription" class="form-label fw-bold">Transcrição:</label>
               <textarea id="transcription" class="form-control flex-grow-1" readonly placeholder="A transcrição aparecerá aqui..."></textarea>
+              
+              <div class="d-flex gap-2 mt-2">
+                <button type="button" class="btn btn-outline-secondary btn-sm flex-grow-1" id="copyTranscriptionBtn"><i class="bi bi-clipboard"></i> Copiar Texto</button>
+                <button id="downloadTranscriptionBtn" class="btn btn-outline-secondary btn-sm flex-grow-1"><i class="bi bi-download"></i> Baixar Transcrição</button>
+              </div>
             </div>
             
             <div class="mb-3 d-flex flex-column flex-grow-1">
               <label for="summary" class="form-label fw-bold">Resumo em Tópicos:</label>
               <textarea id="summary" class="form-control flex-grow-1" readonly placeholder="O resumo em tópicos aparecerá aqui..."></textarea>
+              
+              <div class="d-flex gap-2 mt-2">
+                <button type="button" class="btn btn-outline-secondary btn-sm flex-grow-1" id="copySummaryBtn"><i class="bi bi-clipboard"></i> Copiar Texto</button>
+                <button id="downloadSummaryBtn" class="btn btn-outline-secondary btn-sm flex-grow-1"><i class="bi bi-download"></i> Baixar Resumo</button>
+              </div>
             </div>
-
-            <h3 class="section-title">4. Próximos Passos</h3>
             
+            <h3 class="section-title">3. Próximos Passos</h3>
             <div class="d-flex justify-content-center flex-wrap gap-2 pt-3">
-              <button id="downloadTranscriptionBtn" class="btn btn-outline-secondary"><i class="bi bi-download"></i> Baixar Transcrição</button>
-              <button id="downloadSummaryBtn" class="btn btn-outline-secondary"><i class="bi bi-download"></i> Baixar Resumo</button>
               <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#activityModal">
                 <i class="bi bi-journal-plus"></i> Gerar Atividade
               </button>
               <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#verifyModal">
-                <i class="bi bi-check2-square"></i> Corrigir Atividade
+                <i class="bi bi-check2-square"></i> Corrigir Múlt. Escolha
+              </button>
+              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#dissertativaModal">
+                <i class="bi bi-pen"></i> Corrigir Dissertativa
               </button>
             </div>
-
-          </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
 
@@ -340,27 +277,32 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="verifyModalLabel">Verificador de Gabarito</h5>
+          <h5 class="modal-title" id="verifyModalLabel">Corretor de Múltipla Escolha</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-           <p class="text-muted">Envie o gabarito e as respostas do aluno para correção automática.</p>
+           <p class="text-muted">Envie as respostas do aluno e o gabarito para correção automática.</p>
           <div class="mb-3">
-            <label for="teacherKeyFile" class="form-label fw-bold">1. PDF do Professor:</label>
-            <input type="file" id="teacherKeyFile" class="form-control" accept=".pdf">
-            <div class="form-text">Envie o PDF com as respostas corretas.</div>
-          </div>
-          <div class="mb-3">
-            <label for="studentSheetFile" class="form-label fw-bold">2. Imagem(ns) do Aluno:</label>
+            <label for="studentSheetFile" class="form-label fw-bold">1. Imagem(ns) do Aluno:</label>
             <input type="file" id="studentSheetFile" class="form-control" accept="image/*" multiple>
             <div class="form-text">Envie uma ou mais fotos da(s) folha(s) preenchida(s).</div>
           </div>
-          <hr>
-          <div id="gradeResult" class="text-center mt-3">
+          <div class="mb-3">
+            <label for="teacherAnswers" class="form-label fw-bold">2. Digite o Gabarito (Múlt. Escolha):</label>
+            <input type="text" class="form-control" id="teacherAnswers" placeholder="Ex: A,B,C,D,A">
+            <div class="form-text">Separe as respostas corretas por vírgula.</div>
           </div>
+          <hr>
+          <div id="progressContainer" class="d-none">
+            <p id="progressText" class="text-center mb-1">Processando...</p>
+            <div class="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%">0%</div>
+            </div>
+          </div>
+          <div id="gradeResult" class="text-center mt-3"></div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="verifyCancelBtn">Cancelar</button>
           <button id="verifyBtn" class="btn btn-warning">
             <i class="bi bi-clipboard2-check-fill"></i>Verificar Nota
             <span class="spinner-border spinner-border-sm spinner-beside d-none" role="status" aria-hidden="true"></span>
@@ -378,31 +320,26 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-
           <h6>Passo 1: Forneça o Áudio</h6>
           <ul>
             <li><strong>Gravando:</strong> Clique no botão verde <button class="btn btn-sm btn-success disabled"><i class="bi bi-mic-fill"></i>Gravar</button>. Fale o que desejar. Clique em <button class="btn btn-sm btn-danger disabled"><i class="bi bi-stop-fill"></i>Parar</button> quando terminar.</li>
             <li><strong>Enviando Arquivo:</strong> Clique em "Escolher arquivo", selecione um arquivo de áudio (MP3, WAV, etc.) do seu computador.</li>
           </ul>
-
           <hr>
-
           <h6>Passo 2: Processe o Áudio</h6>
           <ul>
             <li>Clique no botão azul <button class="btn btn-sm btn-primary disabled"><i class="bi bi-cpu-fill"></i>Transcrever e Resumir</button>.</li>
             <li>Aguarde o processamento. O texto aparecerá nas caixas "Transcrição" e "Resumo em Tópicos".</li>
           </ul>
-
           <hr>
-
           <h6>Passo 3: Use os Resultados</h6>
           <p>Com a transcrição e o resumo prontos, você pode:</p>
           <ul>
-            <li><strong>Baixar:</strong> Use os botões <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-download"></i>Baixar Transcrição</button> ou <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-download"></i>Baixar Resumo</button> para salvar os textos em PDF.</li>
-            <li><strong>Gerar Atividade:</strong> Clique em <button class="btn btn-sm btn-outline-info disabled"><i class="bi bi-journal-plus"></i>Gerar Atividade</button>, configure as opções (tipo, dificuldade, etc.) e clique em "Gerar PDF" para criar uma atividade baseada no resumo. Você receberá um arquivo .zip com a versão do aluno e a do professor (com gabarito).</li>
-            <li><strong>Corrigir Atividade:</strong> Clique em <button class="btn btn-sm btn-outline-warning disabled"><i class="bi bi-check2-square"></i>Corrigir Atividade</button>, envie o PDF do professor e a(s) foto(s) da folha de respostas do aluno, e clique em "Verificar Nota" para obter a correção automática, (caso o aluno não ter responido desenhe um X GRANDE em vermelho ao lado).</li>
+            <li><strong>Baixar:</strong> Use os botões <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-download"></i>Baixar Transcrição</button> ou <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-download"></i>Baixar Resumo</button> para salvar os textos em PDF (localizados abaixo de cada caixa de texto).</li>
+            <li><strong>Gerar Atividade:</strong> Clique em <button class="btn btn-sm btn-outline-info disabled"><i class="bi bi-journal-plus"></i>Gerar Atividade</button>, configure as opções (tipo, dificuldade, etc.) e clique em "Gerar PDF" para criar uma atividade baseada no resumo.</li>
+            <li><strong>Corrigir Múlt. Escolha:</strong> Clique em <button class="btn btn-sm btn-outline-warning disabled"><i class="bi bi-check2-square"></i>Corrigir Múlt. Escolha</button>, envie a(s) foto(s) da folha do aluno, **digite o gabarito (ex: A,B,C)**, e clique em "Verificar Nota" para obter a correção automática.</li>
+            <li><strong>Corrigir Dissertativa:</strong> Clique em <button class="btn btn-sm btn-outline-success disabled"><i class="bi bi-pen"></i> Corrigir Dissertativa</button>, envie a(s) foto(s) da prova, **digite a resposta esperada** e os **critérios de avaliação**.</li>
           </ul>
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>
@@ -411,454 +348,860 @@
     </div>
   </div>
 
+  <div class="modal fade" id="resultsModal" tabindex="-1" aria-labelledby="resultsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="resultsModalLabel">Resultados Detalhados (Múltipla Escolha)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="resultsModalBody">
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="dissertativaModal" tabindex="-1" aria-labelledby="dissertativaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dissertativaModalLabel">Corretor de Prova Dissertativa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           <p class="text-muted">Forneça os dados para a IA corrigir a(s) prova(s) dissertativa(s).</p>
+          <div class="mb-3">
+            <label for="studentAnswersFile" class="form-label fw-bold">1. Imagem(ns) da Prova do Aluno:</label>
+            <input type="file" id="studentAnswersFile" class="form-control" accept="image/*" multiple>
+            <div class="form-text">Envie uma ou mais fotos da prova.</div>
+          </div>
+          <div class="mb-3">
+            <label for="gabaritoDissertativo" class="form-label fw-bold">2. Resposta Esperada (Gabarito):</label>
+            <textarea class="form-control" id="gabaritoDissertativo" rows="5" placeholder="Digite aqui a resposta completa que o aluno deveria ter dado..."></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="criteriosAvaliacao" class="form-label fw-bold">3. Observações (Critérios de Avaliação):</label>
+            <textarea class="form-control" id="criteriosAvaliacao" rows="3" placeholder="Ex: Seja detalhista na análise da coesão. Verifique se o aluno citou o 'Conceito X'."></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="notaMaximaDissertativa" class="form-label fw-bold">4. Nota Máxima:</label>
+            <input type="number" class="form-control" id="notaMaximaDissertativa" value="10" min="1">
+          </div>
+          <hr>
+          <div id="dissertativaProgressContainer" class="d-none">
+            <p id="dissertativaProgressText" class="text-center mb-1">Processando...</p>
+            <div class="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div id="dissertativaProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 0%">0%</div>
+            </div>
+          </div>
+          <div id="dissertativaGradeResult" class="text-center mt-3">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="dissertativaCancelBtn">Cancelar</button>
+          <button id="corrigirDissertativaBtn" class="btn btn-success">
+            <i class="bi bi-pen-fill"></i> Corrigir Prova
+            <span class="spinner-border spinner-border-sm spinner-beside d-none" role="status" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="dissertativaResultsModal" tabindex="-1" aria-labelledby="dissertativaResultsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dissertativaResultsModalLabel">Resultados da Correção Dissertativa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="dissertativaResultsModalBody">
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
     const { jsPDF } = window.jspdf;
 
-    // --- Seletores de Elementos ---
-    const recordBtn = document.getElementById("recordBtn");
-    const stopBtn = document.getElementById("stopBtn");
-    const transcribeBtn = document.getElementById("transcribeBtn");
-    const downloadTranscriptionBtn = document.getElementById("downloadTranscriptionBtn");
-    const downloadSummaryBtn = document.getElementById("downloadSummaryBtn");
-    const timerElement = document.getElementById("timer");
-    const audioFileInput = document.getElementById("audioFile");
-    const transcriptionArea = document.getElementById("transcription");
-    const summaryArea = document.getElementById("summary");
-    const visualizer = document.getElementById("visualizer");
-    const activityType = document.getElementById('activityType');
-    const objectiveFormatGroup = document.getElementById('objectiveFormatGroup');
-    const generateActivityBtn = document.getElementById('generateActivityBtn');
-    const activityModalEl = document.getElementById('activityModal');
-    const activityModal = new bootstrap.Modal(activityModalEl);
-    const verifyBtn = document.getElementById('verifyBtn');
-    const teacherKeyFileInput = document.getElementById('teacherKeyFile');
-    const studentSheetFileInput = document.getElementById('studentSheetFile');
-    const gradeResultDiv = document.getElementById('gradeResult');
+    document.addEventListener('DOMContentLoaded', () => {
 
-    const tutorialBtn = document.getElementById('tutorialBtn');
-    const tutorialModalEl = document.getElementById('tutorialModal');
-    const tutorialModal = new bootstrap.Modal(tutorialModalEl);
+        // --- Seletores de Elementos (Antigos) ---
+        const recordBtn = document.getElementById("recordBtn");
+        const stopBtn = document.getElementById("stopBtn");
+        const transcribeBtn = document.getElementById("transcribeBtn");
+        const downloadTranscriptionBtn = document.getElementById("downloadTranscriptionBtn");
+        const downloadSummaryBtn = document.getElementById("downloadSummaryBtn");
+        const timerElement = document.getElementById("timer");
+        const audioFileInput = document.getElementById("audioFile");
+        const transcriptionArea = document.getElementById("transcription");
+        const summaryArea = document.getElementById("summary");
+        const visualizer = document.getElementById("visualizer");
+        const activityType = document.getElementById('activityType');
+        const objectiveFormatGroup = document.getElementById('objectiveFormatGroup');
+        const generateActivityBtn = document.getElementById('generateActivityBtn');
+        const activityModalEl = document.getElementById('activityModal');
+        const activityModal = new bootstrap.Modal(activityModalEl);
+        const tutorialBtn = document.getElementById('tutorialBtn');
+        const tutorialModalEl = document.getElementById('tutorialModal');
+        const tutorialModal = new bootstrap.Modal(tutorialModalEl);
+        
+        // --- NOVOS Seletores (Copiar) ---
+        const copyTranscriptionBtn = document.getElementById('copyTranscriptionBtn');
+        const copySummaryBtn = document.getElementById('copySummaryBtn');
 
-    // --- Variáveis de Estado ---
-    let mediaRecorder, recordedChunks = [], recordedBlob;
-    let audioContext, analyser, source, dataArray;
-    let isRecording = false, isPaused = false;
-    let timerInterval, seconds = 0;
+        // --- Seletores (Múltipla Escolha) ---
+        const verifyBtn = document.getElementById('verifyBtn');
+        const studentSheetFileInput = document.getElementById('studentSheetFile');
+        const gradeResultDiv = document.getElementById('gradeResult');
+        const verifyModalEl = document.getElementById('verifyModal'); 
+        const verifyModal = new bootstrap.Modal(verifyModalEl);      
+        const verifyCancelBtn = document.getElementById('verifyCancelBtn');
+        const teacherAnswers = document.getElementById('teacherAnswers');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const resultsModalEl = document.getElementById('resultsModal');
+        const resultsModal = new bootstrap.Modal(resultsModalEl);
+        const resultsModalBody = document.getElementById('resultsModalBody');
 
-    // --- Funções Auxiliares (Feedback) ---
-    function showSpinner(buttonId) {
-        const button = document.getElementById(buttonId);
-        if (button) {
-            button.disabled = true;
-            const spinner = button.querySelector('.spinner-border');
-            if (spinner) spinner.classList.remove('d-none');
-        }
-    }
+        // --- Seletores (Dissertativa) ---
+        const dissertativaModalEl = document.getElementById('dissertativaModal');
+        const dissertativaModal = new bootstrap.Modal(dissertativaModalEl);
+        const studentAnswersFile = document.getElementById('studentAnswersFile');
+        const gabaritoDissertativo = document.getElementById('gabaritoDissertativo');
+        const criteriosAvaliacao = document.getElementById('criteriosAvaliacao');
+        const notaMaximaDissertativa = document.getElementById('notaMaximaDissertativa');
+        const corrigirDissertativaBtn = document.getElementById('corrigirDissertativaBtn');
+        const dissertativaProgressContainer = document.getElementById('dissertativaProgressContainer');
+        const dissertativaProgressBar = document.getElementById('dissertativaProgressBar');
+        const dissertativaProgressText = document.getElementById('dissertativaProgressText');
+        const dissertativaGradeResult = document.getElementById('dissertativaGradeResult');
+        const dissertativaCancelBtn = document.getElementById('dissertativaCancelBtn');
+        const dissertativaResultsModalEl = document.getElementById('dissertativaResultsModal');
+        const dissertativaResultsModal = new bootstrap.Modal(dissertativaResultsModalEl);
+        const dissertativaResultsModalBody = document.getElementById('dissertativaResultsModalBody');
 
-    function hideSpinner(buttonId) {
-        const button = document.getElementById(buttonId);
-        if (button) {
-            button.disabled = false;
-            const spinner = button.querySelector('.spinner-border');
-            if (spinner) spinner.classList.add('d-none');
-        }
-    }
+        // --- Variáveis de Estado ---
+        let mediaRecorder, recordedChunks = [], recordedBlob;
+        let audioContext, analyser, source, dataArray;
+        let isRecording = false, isPaused = false;
+        let timerInterval, seconds = 0;
+        let verificationPollInterval = null; 
+        let verificationJobData = null;      
+        let dissertativaPollInterval = null; 
+        let dissertativaJobData = null;      
 
-    // --- Funções de Gravação, Timer, Visualizador, Transcrição ---
-    function startTimer() {
-        timerInterval = setInterval(() => {
-            seconds++;
-            const min = String(Math.floor(seconds / 60)).padStart(2, "0");
-            const sec = String(seconds % 60).padStart(2, "0");
-            timerElement.textContent = `${min}:${sec}`;
-        }, 1000);
-    }
-    function stopTimer() { clearInterval(timerInterval); }
-    function resetTimer() { clearInterval(timerInterval); seconds = 0; timerElement.textContent = "00:00"; }
-    function drawVisualizer() {
-        const ctx = visualizer.getContext("2d");
-        const draw = () => {
-            requestAnimationFrame(draw);
-            if (!analyser) return;
-            analyser.getByteTimeDomainData(dataArray);
-            ctx.fillStyle = "#fdfdfd"; 
-            ctx.fillRect(0, 0, visualizer.width, visualizer.height);
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = "#1e3c72"; 
-            ctx.beginPath();
-            const sliceWidth = visualizer.width * 1.0 / analyser.fftSize;
-            let x = 0;
-            for (let i = 0; i < analyser.fftSize; i++) {
-                const v = dataArray[i] / 128.0;
-                const y = v * visualizer.height / 2;
-                if (i === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
-                x += sliceWidth;
+        // --- Funções Auxiliares (Feedback) ---
+        function showSpinner(buttonId) {
+            const button = document.getElementById(buttonId);
+            if (button) {
+                button.disabled = true;
+                const spinner = button.querySelector('.spinner-border');
+                if (spinner) spinner.classList.remove('d-none');
             }
-            ctx.lineTo(visualizer.width, visualizer.height / 2);
-            ctx.stroke();
-        };
-        draw();
-    }
-    recordBtn.addEventListener("click", async () => {
-        if (!isRecording) {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioContext.createAnalyser();
-                source = audioContext.createMediaStreamSource(stream);
-                source.connect(analyser);
-                analyser.fftSize = 2048;
-                dataArray = new Uint8Array(analyser.frequencyBinCount);
-                drawVisualizer();
-                mediaRecorder = new MediaRecorder(stream);
-                recordedChunks = [];
-                mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
-                mediaRecorder.onstop = async () => {
-                    transcriptionArea.value = "Convertendo para MP3...";
-                    summaryArea.value = "";
-                    try {
-                        const webmBlob = new Blob(recordedChunks, { type: "audio/webm" });
-                        const arrayBuffer = await webmBlob.arrayBuffer();
-                        if (!audioContext || audioContext.state === 'closed') { audioContext = new (window.AudioContext || window.webkitAudioContext)(); }
-                        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-                        const mp3Encoder = new lamejs.Mp3Encoder(1, audioBuffer.sampleRate, 128);
-                        const pcmData = audioBuffer.getChannelData(0);
-                        const samples = new Int16Array(pcmData.length);
-                        for (let i = 0; i < pcmData.length; i++) { samples[i] = pcmData[i] * 32767; }
-                        const mp3Chunks = [];
-                        const chunkSize = 1152;
-                        for (let i = 0; i < samples.length; i += chunkSize) {
-                            const chunk = samples.subarray(i, i + chunkSize);
-                            const mp3Chunk = mp3Encoder.encodeBuffer(chunk);
-                            if (mp3Chunk.length > 0) { mp3Chunks.push(mp3Chunk); }
+        }
+        function hideSpinner(buttonId) {
+            const button = document.getElementById(buttonId);
+            if (button) {
+                button.disabled = false;
+                const spinner = button.querySelector('.spinner-border');
+                if (spinner) spinner.classList.add('d-none');
+            }
+        }
+
+        // --- Funções de Gravação, Timer, etc. ---
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                seconds++;
+                const min = String(Math.floor(seconds / 60)).padStart(2, "0");
+                const sec = String(seconds % 60).padStart(2, "0");
+                timerElement.textContent = `${min}:${sec}`;
+            }, 1000);
+        }
+        function stopTimer() { clearInterval(timerInterval); }
+        function resetTimer() { clearInterval(timerInterval); seconds = 0; timerElement.textContent = "00:00"; }
+        function drawVisualizer() {
+            const ctx = visualizer.getContext("2d");
+            const draw = () => {
+                requestAnimationFrame(draw);
+                if (!analyser) return;
+                analyser.getByteTimeDomainData(dataArray);
+                ctx.fillStyle = "#fdfdfd"; 
+                ctx.fillRect(0, 0, visualizer.width, visualizer.height);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = "#1e3c72"; 
+                ctx.beginPath();
+                const sliceWidth = visualizer.width * 1.0 / analyser.fftSize;
+                let x = 0;
+                for (let i = 0; i < analyser.fftSize; i++) {
+                    const v = dataArray[i] / 128.0;
+                    const y = v * visualizer.height / 2;
+                    if (i === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
+                    x += sliceWidth;
+                }
+                ctx.lineTo(visualizer.width, visualizer.height / 2);
+                ctx.stroke();
+            };
+            draw();
+        }
+        recordBtn.addEventListener("click", async () => {
+            if (!isRecording) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    analyser = audioContext.createAnalyser();
+                    source = audioContext.createMediaStreamSource(stream);
+                    source.connect(analyser);
+                    analyser.fftSize = 2048;
+                    dataArray = new Uint8Array(analyser.frequencyBinCount);
+                    drawVisualizer();
+                    mediaRecorder = new MediaRecorder(stream);
+                    recordedChunks = [];
+                    mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+                    mediaRecorder.onstop = async () => {
+                        transcriptionArea.value = "Convertendo para MP3...";
+                        summaryArea.value = "";
+                        try {
+                            const webmBlob = new Blob(recordedChunks, { type: "audio/webm" });
+                            const arrayBuffer = await webmBlob.arrayBuffer();
+                            if (!audioContext || audioContext.state === 'closed') { audioContext = new (window.AudioContext || window.webkitAudioContext)(); }
+                            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                            const mp3Encoder = new lamejs.Mp3Encoder(1, audioBuffer.sampleRate, 128);
+                            const pcmData = audioBuffer.getChannelData(0);
+                            const samples = new Int16Array(pcmData.length);
+                            for (let i = 0; i < pcmData.length; i++) { samples[i] = pcmData[i] * 32767; }
+                            const mp3Chunks = [];
+                            const chunkSize = 1152;
+                            for (let i = 0; i < samples.length; i += chunkSize) {
+                                const chunk = samples.subarray(i, i + chunkSize);
+                                const mp3Chunk = mp3Encoder.encodeBuffer(chunk);
+                                if (mp3Chunk.length > 0) { mp3Chunks.push(mp3Chunk); }
+                            }
+                            const finalMp3Chunk = mp3Encoder.flush();
+                            if (finalMp3Chunk.length > 0) { mp3Chunks.push(finalMp3Chunk); }
+                            const mp3Blob = new Blob(mp3Chunks, { type: 'audio/mpeg' });
+                            recordedBlob = mp3Blob;
+                            transcriptionArea.value = "Áudio pronto! Clique em 'Transcrever'.";
+                        } catch (error) {
+                            console.error("Erro ao converter áudio para MP3:", error);
+                            transcriptionArea.value = "Falha na conversão do áudio.";
+                            recordedBlob = new Blob(recordedChunks, { type: "audio/webm" });
+                        } finally {
+                            if(audioContext && audioContext.state !== 'closed') audioContext.close();
                         }
-                        const finalMp3Chunk = mp3Encoder.flush();
-                        if (finalMp3Chunk.length > 0) { mp3Chunks.push(finalMp3Chunk); }
-                        const mp3Blob = new Blob(mp3Chunks, { type: 'audio/mpeg' });
-                        recordedBlob = mp3Blob;
-                        transcriptionArea.value = "Áudio pronto! Clique em 'Transcrever'.";
-                    } catch (error) {
-                        console.error("Erro ao converter áudio para MP3:", error);
-                        transcriptionArea.value = "Falha na conversão do áudio.";
-                        recordedBlob = new Blob(recordedChunks, { type: "audio/webm" });
-                    } finally {
-                        if(audioContext && audioContext.state !== 'closed') audioContext.close();
-                    }
-                };
-                mediaRecorder.start();
-                startTimer();
-                isRecording = true;
+                    };
+                    mediaRecorder.start();
+                    startTimer();
+                    isRecording = true;
+                    recordBtn.innerHTML = '<i class="bi bi-pause-fill"></i>Pausar';
+                    recordBtn.classList.replace("btn-success", "btn-warning");
+                    stopBtn.disabled = false;
+                } catch (err) { alert("Não foi possível iniciar a gravação. Verifique as permissões do microfone."); }
+            } else if (!isPaused) {
+                mediaRecorder.pause(); stopTimer(); isPaused = true;
+                recordBtn.innerHTML = '<i class="bi bi-play-fill"></i>Retomar';
+                recordBtn.classList.replace("btn-warning", "btn-primary");
+            } else {
+                mediaRecorder.resume(); startTimer(); isPaused = false;
                 recordBtn.innerHTML = '<i class="bi bi-pause-fill"></i>Pausar';
-                recordBtn.classList.replace("btn-success", "btn-warning");
-                stopBtn.disabled = false;
-            } catch (err) { alert("Não foi possível iniciar a gravação. Verifique as permissões do microfone."); }
-        } else if (!isPaused) {
-            mediaRecorder.pause(); stopTimer(); isPaused = true;
-            recordBtn.innerHTML = '<i class="bi bi-play-fill"></i>Retomar';
-            recordBtn.classList.replace("btn-warning", "btn-primary");
-        } else {
-            mediaRecorder.resume(); startTimer(); isPaused = false;
-            recordBtn.innerHTML = '<i class="bi bi-pause-fill"></i>Pausar';
-            recordBtn.classList.replace("btn-primary", "btn-warning");
-        }
-    });
-    stopBtn.addEventListener("click", () => {
-        if (mediaRecorder && mediaRecorder.state !== "inactive") {
-            mediaRecorder.stop(); stopTimer(); isRecording = false; isPaused = false;
-            recordBtn.innerHTML = '<i class="bi bi-mic-fill"></i>Gravar';
-            recordBtn.className = "btn btn-success";
-            stopBtn.disabled = true; resetTimer();
-        }
-    });
-    audioFileInput.addEventListener("change", (e) => {
-        if (e.target.files[0]) {
-             recordedBlob = e.target.files[0];
-             transcriptionArea.value = `Arquivo "${recordedBlob.name}" selecionado. Clique em 'Transcrever'.`;
-             summaryArea.value = "";
-        }
-    });
-    transcribeBtn.addEventListener("click", () => {
-        if (!recordedBlob) return alert("Grave ou envie um arquivo de áudio primeiro!");
-        sendAudioForTranscription(recordedBlob);
-    });
-    async function sendAudioForTranscription(file) {
-        const formData = new FormData();
-        formData.append("audio", file);
-        transcriptionArea.value = "Enviando áudio...";
-        summaryArea.value = "";
-        showSpinner('transcribeBtn');
-
-        try {
-            const API_URL = "https://voz-transcricao.onrender.com/transcribe-chunked"; // Sua URL
-            const response = await fetch(API_URL, { method: "POST", body: formData });
-            if (!response.ok) throw new Error(`Falha no envio: ${response.statusText}`);
-            const { jobId } = await response.json();
-            transcriptionArea.value = `Processando... (Aguarde)`;
-            pollJobStatus(jobId);
-        } catch (err) {
-            transcriptionArea.value = `Erro: ${err.message}`;
-            hideSpinner('transcribeBtn');
-        }
-    }
-    function pollJobStatus(jobId) {
-        const intervalId = setInterval(async () => {
+                recordBtn.classList.replace("btn-primary", "btn-warning");
+            }
+        });
+        stopBtn.addEventListener("click", () => {
+            if (mediaRecorder && mediaRecorder.state !== "inactive") {
+                mediaRecorder.stop(); stopTimer(); isRecording = false; isPaused = false;
+                recordBtn.innerHTML = '<i class="bi bi-mic-fill"></i>Gravar';
+                recordBtn.className = "btn btn-success";
+                stopBtn.disabled = true; resetTimer();
+            }
+        });
+        audioFileInput.addEventListener("change", (e) => {
+            if (e.target.files[0]) {
+                 recordedBlob = e.target.files[0];
+                 transcriptionArea.value = `Arquivo "${recordedBlob.name}" selecionado. Clique em 'Transcrever'.`;
+                 summaryArea.value = "";
+            }
+        });
+        transcribeBtn.addEventListener("click", () => {
+            if (!recordedBlob) return alert("Grave ou envie um arquivo de áudio primeiro!");
+            sendAudioForTranscription(recordedBlob);
+        });
+        async function sendAudioForTranscription(file) {
+            const formData = new FormData();
+            formData.append("audio", file);
+            transcriptionArea.value = "Enviando áudio...";
+            summaryArea.value = "";
+            showSpinner('transcribeBtn');
             try {
-                const statusResponse = await fetch(`https://voz-transcricao.onrender.com/status/${jobId}`); // Sua URL
-                if (!statusResponse.ok) {
-                    clearInterval(intervalId);
-                    transcriptionArea.value = "Erro ao buscar status do trabalho.";
-                    hideSpinner('transcribeBtn');
-                    return;
-                }
-                const job = await statusResponse.json();
-
-                if (job.status === "processing" || job.status === "summarizing") {
-                    transcriptionArea.value = `Processando... ${job.progress ? job.progress.toFixed(0) + '%' : ''}`;
-                } else if (job.status === "completed") {
-                    clearInterval(intervalId);
-                    transcriptionArea.value = job.transcription;
-                    summaryArea.value = job.summary || "";
-                    hideSpinner('transcribeBtn');
-                } else if (job.status === "failed") {
-                    clearInterval(intervalId);
-                    transcriptionArea.value = `Falha no Processamento: ${job.error || 'Erro desconhecido'}`;
-                    hideSpinner('transcribeBtn');
-                }
+                const API_URL = "https://voz-transcricao.onrender.com/transcribe-chunked";
+                const response = await fetch(API_URL, { method: "POST", body: formData });
+                if (!response.ok) throw new Error(`Falha no envio: ${response.statusText}`);
+                const { jobId } = await response.json();
+                transcriptionArea.value = `Processando... (Aguarde)`;
+                pollJobStatus(jobId);
             } catch (err) {
-                clearInterval(intervalId);
-                transcriptionArea.value = "Erro de comunicação ao verificar status.";
+                transcriptionArea.value = `Erro: ${err.message}`; 
                 hideSpinner('transcribeBtn');
             }
-        }, 3000);
-    }
-
-    // --- Lógica do Gerador de Atividades ---
-    activityType.addEventListener('change', () => {
-        objectiveFormatGroup.classList.toggle('d-none', activityType.value !== 'objetiva');
-    });
-    generateActivityBtn.addEventListener("click", async () => {
-        showSpinner('generateActivityBtn');
-        const summaryText = summaryArea.value;
-         if (!summaryText.trim()) {
-               alert("É preciso ter um resumo para criar uma atividade!");
-               hideSpinner('generateActivityBtn');
-               return;
-         }
-        const options = {
-            type: activityType.value,
-            difficulty: document.getElementById('difficulty').value,
-            quantity: document.getElementById('quantity').value,
-        };
-        if (options.type === 'objetiva') {
-            options.questionType = document.getElementById('questionType').value;
         }
-
-         try {
-             const response = await fetch("https://voz-transcricao.onrender.com/generate-activity", { // Sua URL
-                 method: 'POST',
-                 headers: { 'Content-Type': 'application/json' },
-                 body: JSON.stringify({ summaryText, options }),
-             });
-             if (!response.ok) throw new Error('Falha no servidor ao gerar atividade.');
-
-             const { activityText, answers } = await response.json();
-
-             if (options.type === 'dissertativa' || !answers || answers.length === 0) {
-                  if(options.type !== 'dissertativa') alert("Atenção: O gabarito não foi retornado. Apenas o PDF do aluno será gerado.");
-                  const studentDoc = generatePdf("Atividade_Aluno", activityText, options, null);
-                  if (studentDoc) studentDoc.save("Atividade_Aluno.pdf");
-             } else {
-                  await generatePdfsAndZip(activityText, answers, options);
+        function pollJobStatus(jobId) {
+            const intervalId = setInterval(async () => {
+                try {
+                    const statusResponse = await fetch(`https://voz-transcricao.onrender.com/status/${jobId}`);
+                    if (!statusResponse.ok) {
+                        clearInterval(intervalId);
+                        transcriptionArea.value = "Erro ao buscar status do trabalho.";
+                        hideSpinner('transcribeBtn');
+                        return;
+                    }
+                    const job = await statusResponse.json();
+                    if (job.status === "processing" || job.status === "summarizing") {
+                        transcriptionArea.value = `Processando... ${job.progress ? job.progress.toFixed(0) + '%' : ''}`;
+                    } else if (job.status === "completed") {
+                        clearInterval(intervalId);
+                        transcriptionArea.value = job.transcription;
+                        summaryArea.value = job.summary || "";
+                        hideSpinner('transcribeBtn');
+                    } else if (job.status === "failed") {
+                        clearInterval(intervalId);
+                        transcriptionArea.value = `Falha no Processamento: ${job.error || 'Erro desconhecido'}`;
+                        hideSpinner('transcribeBtn');
+                    }
+                } catch (err) {
+                    clearInterval(intervalId);
+                    transcriptionArea.value = "Erro de comunicação ao verificar status.";
+                    hideSpinner('transcribeBtn');
+                }
+            }, 3000);
+        }
+        
+        // --- Lógica do Gerador de Atividades (Inalterada) ---
+        activityType.addEventListener('change', () => {
+            objectiveFormatGroup.classList.toggle('d-none', activityType.value !== 'objetiva');
+        });
+        generateActivityBtn.addEventListener("click", async () => {
+            showSpinner('generateActivityBtn');
+            const summaryText = summaryArea.value;
+             if (!summaryText.trim()) {
+                   alert("É preciso ter um resumo para criar uma atividade!");
+                   hideSpinner('generateActivityBtn');
+                   return;
              }
-              activityModal.hide();
-         } catch (error) {
-               console.error("Erro ao gerar atividade:", error);
-              alert("Ocorreu um erro ao gerar a atividade.");
-         } finally {
-               hideSpinner('generateActivityBtn');
-         }
-    });
-
-    // --- Funções de Geração de PDF e ZIP ---
-    async function generatePdfsAndZip(activityText, answers, options) {
-        const studentDoc = generatePdf("Atividade para o Aluno", activityText, options, null);
-        const teacherDoc = generatePdf("Gabarito para o Professor", activityText, options, answers);
-        if (!studentDoc || !teacherDoc) {
-             alert("Falha ao gerar um dos PDFs.");
-             return;
+            const options = {
+                type: activityType.value,
+                difficulty: document.getElementById('difficulty').value,
+                quantity: document.getElementById('quantity').value,
+            };
+            if (options.type === 'objetiva') {
+                options.questionType = document.getElementById('questionType').value;
+            }
+             try {
+                 const response = await fetch("https://voz-transcricao.onrender.com/generate-activity", { 
+                     method: 'POST',
+                     headers: { 'Content-Type': 'application/json' },
+                     body: JSON.stringify({ summaryText, options }),
+                 });
+                 if (!response.ok) throw new Error('Falha no servidor ao gerar atividade.');
+                 const { activityText, answers } = await response.json();
+                 if (options.type === 'dissertativa' || !answers || answers.length === 0) {
+                      if(options.type !== 'dissertativa') alert("Atenção: O gabarito não foi retornado. Apenas o PDF do aluno será gerado.");
+                      const studentDoc = generatePdf("Atividade_Aluno", activityText, options, null);
+                      if (studentDoc) studentDoc.save("Atividade_Aluno.pdf");
+                 } else {
+                      await generatePdfsAndZip(activityText, answers, options);
+                 }
+                  activityModal.hide();
+             } catch (error) {
+                   console.error("Erro ao gerar atividade:", error);
+                  alert("Ocorreu um erro ao gerar a atividade.");
+             } finally {
+                   hideSpinner('generateActivityBtn');
+             }
+        });
+        async function generatePdfsAndZip(activityText, answers, options) {
+            const studentDoc = generatePdf("Atividade para o Aluno", activityText, options, null);
+            const teacherDoc = generatePdf("Gabarito para o Professor", activityText, options, answers);
+            if (!studentDoc || !teacherDoc) {
+                 alert("Falha ao gerar um dos PDFs.");
+                 return;
+            }
+            const zip = new JSZip();
+            zip.file("Atividade_Aluno.pdf", studentDoc.output('blob'));
+            zip.file("Gabarito_Professor.pdf", teacherDoc.output('blob'));
+            const zipBlob = await zip.generateAsync({ type: "blob" });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(zipBlob);
+            link.download = 'Atividades.zip';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
         }
-        const zip = new JSZip();
-        zip.file("Atividade_Aluno.pdf", studentDoc.output('blob'));
-        zip.file("Gabarito_Professor.pdf", teacherDoc.output('blob'));
-        const zipBlob = await zip.generateAsync({ type: "blob" });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(zipBlob);
-        link.download = 'Atividades.zip';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(link.href);
-    }
-    function drawAnswerSheet(doc, startY, questionCount, page, answers = null) {
-        let cursorY = startY;
-        const { pageHeight, margin } = page;
-        const rowHeight = 10;
-        const colWidth = 15;
-        const circleRadius = 3.5;
-        const options = ['A', 'B', 'C', 'D'];
-        const startX = margin.left;
-
-        if (cursorY + rowHeight + 5 > pageHeight - margin.bottom) {
-            doc.addPage();
-            cursorY = margin.top;
-        }
-
-        doc.setFontSize(12);
-        doc.setFont(undefined, 'bold');
-        doc.text("Folha de Respostas", startX, cursorY);
-        doc.setFont(undefined, 'normal');
-        cursorY += rowHeight * 1.5;
-
-        for (let i = 1; i <= questionCount; i++) {
-            if (cursorY + rowHeight > pageHeight - margin.bottom) {
+        function drawAnswerSheet(doc, startY, questionCount, page, answers = null) {
+            let cursorY = startY;
+            const { pageHeight, margin } = page;
+            const rowHeight = 10;
+            const colWidth = 15;
+            const circleRadius = 3.5;
+            const options = ['A', 'B', 'C', 'D'];
+            const startX = margin.left;
+            if (cursorY + rowHeight + 5 > pageHeight - margin.bottom) {
                 doc.addPage();
                 cursorY = margin.top;
             }
-            doc.setFontSize(10);
-            doc.text(`${i}.`, startX + 2, cursorY);
-
-            options.forEach((option) => {
-                const circleX = startX + 25 + (options.indexOf(option) * colWidth);
-                const circleY = cursorY - circleRadius / 2;
-                
-                if (answers && answers[i - 1] && answers[i - 1] === option) {
-                    doc.circle(circleX, circleY, circleRadius, 'F');
-                } else {
-                    doc.circle(circleX, circleY, circleRadius, 'S');
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'bold');
+            doc.text("Folha de Respostas", startX, cursorY);
+            doc.setFont(undefined, 'normal');
+            cursorY += rowHeight * 1.5;
+            for (let i = 1; i <= questionCount; i++) {
+                if (cursorY + rowHeight > pageHeight - margin.bottom) {
+                    doc.addPage();
+                    cursorY = margin.top;
                 }
-                
-                doc.text(option, circleX, circleY, { align: 'center', baseline: 'middle' });
-            });
-            cursorY += rowHeight;
-        }
-        return cursorY;
-    }
-    function generatePdf(title, text, options = {}, answers = null) {
-        if (!text || !text.trim()) { 
-            console.error("Tentativa de gerar PDF sem texto válido.");
-            return null;
-        }
-
-        const doc = new jsPDF();
-        const page = {
-            pageHeight: doc.internal.pageSize.getHeight(),
-            pageWidth: doc.internal.pageSize.getWidth(),
-            margin: { top: 20, bottom: 20, left: 15 }
-        };
-        let cursorY = page.margin.top;
-
-        doc.setFontSize(16);
-        doc.text(title, page.pageWidth / 2, cursorY, { align: 'center' });
-        cursorY += 10;
-        doc.setFontSize(11);
-        const lines = doc.splitTextToSize(text, page.pageWidth - page.margin.left * 2);
-
-        lines.forEach(line => {
-            if (cursorY + 7 > page.pageHeight - page.margin.bottom) {
-                doc.addPage();
-                cursorY = page.margin.top;
+                doc.setFontSize(10);
+                doc.text(`${i}.`, startX + 2, cursorY);
+                options.forEach((option) => {
+                    const circleX = startX + 25 + (options.indexOf(option) * colWidth);
+                    const circleY = cursorY - circleRadius / 2;
+                    if (answers && answers[i - 1] && answers[i - 1] === option) {
+                        doc.circle(circleX, circleY, circleRadius, 'F');
+                    } else {
+                        doc.circle(circleX, circleY, circleRadius, 'S');
+                    }
+                    doc.text(option, circleX, circleY, { align: 'center', baseline: 'middle' });
+                });
+                cursorY += rowHeight;
             }
-            doc.text(line, page.margin.left, cursorY);
-            cursorY += 7;
-        });
-
-        if (options.type === 'objetiva' && options.quantity > 0) {
+            return cursorY;
+        }
+        function generatePdf(title, text, options = {}, answers = null) {
+            if (!text || !text.trim()) { 
+                console.error("Tentativa de gerar PDF sem texto válido.");
+                return null;
+            }
+            const doc = new jsPDF();
+            const page = {
+                pageHeight: doc.internal.pageSize.getHeight(),
+                pageWidth: doc.internal.pageSize.getWidth(),
+                margin: { top: 20, bottom: 20, left: 15 }
+            };
+            let cursorY = page.margin.top;
+            doc.setFontSize(16);
+            doc.text(title, page.pageWidth / 2, cursorY, { align: 'center' });
             cursorY += 10;
-            drawAnswerSheet(doc, cursorY, parseInt(options.quantity), page, answers);
+            doc.setFontSize(11);
+            const lines = doc.splitTextToSize(text, page.pageWidth - page.margin.left * 2);
+            lines.forEach(line => {
+                if (cursorY + 7 > page.pageHeight - page.margin.bottom) {
+                    doc.addPage();
+                    cursorY = page.margin.top;
+                }
+                doc.text(line, page.margin.left, cursorY);
+                cursorY += 7;
+            });
+            if (options.type === 'objetiva' && options.quantity > 0) {
+                cursorY += 10;
+                drawAnswerSheet(doc, cursorY, parseInt(options.quantity), page, answers);
+            }
+            return doc;
+        }
+        downloadTranscriptionBtn.addEventListener("click", () => {
+            const textToDownload = transcriptionArea.value; 
+            if (!textToDownload || !textToDownload.trim()){
+                alert("Não há transcrição para baixar.");
+                return;
+            }
+            const doc = generatePdf("Transcricao", textToDownload, {});
+            if (doc) doc.save("Transcricao.pdf");
+        });
+        downloadSummaryBtn.addEventListener("click", () => {
+             const textToDownload = summaryArea.value; 
+            if (!textToDownload || !textToDownload.trim()){
+                alert("Não há resumo para baixar.");
+                return;
+            }
+            const doc = generatePdf("Resumo", textToDownload, {});
+            if (doc) doc.save("Resumo.pdf");
+        });
+        
+        // --- Função Auxiliar "escapeHTML" (Inalterada) ---
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.toString()
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
         }
         
-        return doc;
-    }
-
-    // --- Funções de download simples ---
-    downloadTranscriptionBtn.addEventListener("click", () => {
-        const textToDownload = transcriptionArea.value; 
-        if (!textToDownload || !textToDownload.trim()){
-            alert("Não há transcrição para baixar.");
-            return;
-        }
-        const doc = generatePdf("Transcricao", textToDownload, {});
-        if (doc) doc.save("Transcricao.pdf");
-    });
-    downloadSummaryBtn.addEventListener("click", () => {
-         const textToDownload = summaryArea.value; 
-        if (!textToDownload || !textToDownload.trim()){
-            alert("Não há resumo para baixar.");
-            return;
-        }
-        const doc = generatePdf("Resumo", textToDownload, {});
-        if (doc) doc.save("Resumo.pdf");
-    });
-
-    // --- Lógica do Verificador de Gabarito ---
-    verifyBtn.addEventListener('click', async () => {
-        showSpinner('verifyBtn');
-        gradeResultDiv.innerHTML = '';
-        const teacherFile = teacherKeyFileInput.files[0];
-        const studentFiles = studentSheetFileInput.files;
-
-         if (!teacherFile || studentFiles.length === 0) {
-             alert('Por favor, envie o PDF do professor e pelo menos uma imagem do aluno.');
-             hideSpinner('verifyBtn');
-             return;
-         }
-         const formData = new FormData();
-         formData.append('teacherKey', teacherFile);
-         for (let i = 0; i < studentFiles.length; i++) {
-             formData.append('studentSheet', studentFiles[i]);
-         }
-
-         try {
-             const response = await fetch("https://voz-transcricao.onrender.com/verify-answers", { // Sua URL
-                 method: 'POST',
-                 body: formData,
-             });
-             if (!response.ok) {
-                 const errorData = await response.json();
-                 throw new Error(errorData.error || 'Falha no servidor.');
-             }
-             const { individualGrades } = await response.json();
-
-             if (individualGrades && individualGrades.length > 0) {
-                 let resultsHtml = '<h5 class="text-success mb-3">Resultados Individuais:</h5>';
-                 resultsHtml += '<ul class="list-group text-start">';
-                 individualGrades.forEach(result => {
-                     resultsHtml += `<li class="list-group-item d-flex justify-content-between align-items-center">
-                                         ${result.fileName}
-                                         <span class="badge bg-${result.grade.startsWith('Erro') ? 'danger' : 'primary'} rounded-pill">${result.grade}</span>
-                                       </li>`;
-                 });
-                 resultsHtml += '</ul>';
-                 gradeResultDiv.innerHTML = resultsHtml;
-             } else {
-                  gradeResultDiv.innerHTML = '<p class="text-warning">Nenhuma nota foi retornada.</p>';
-             }
-         } catch (error) {
-               console.error("Erro ao verificar gabarito:", error);
-              gradeResultDiv.innerHTML = `<p class="text-danger"><b>Erro:</b> ${error.message}</p>`;
-         } finally {
-               hideSpinner('verifyBtn');
-         }
-    });
-    if (tutorialBtn) { 
-        tutorialBtn.addEventListener('click', () => {
-            tutorialModal.show(); 
+        // ==========================================================
+        // === NOVA LÓGICA: BOTÕES DE COPIAR ===
+        // ==========================================================
+        copyTranscriptionBtn.addEventListener("click", () => {
+            const textToCopy = transcriptionArea.value;
+            if (textToCopy) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    // Feedback de sucesso
+                    copyTranscriptionBtn.innerHTML = '<i class="bi bi-check-lg"></i> Copiado!';
+                    setTimeout(() => {
+                        copyTranscriptionBtn.innerHTML = '<i class="bi bi-clipboard"></i> Copiar Texto';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Falha ao copiar: ', err);
+                    alert('Não foi possível copiar o texto.');
+                });
+            }
         });
-    }
 
+        copySummaryBtn.addEventListener("click", () => {
+            const textToCopy = summaryArea.value;
+            if (textToCopy) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    // Feedback de sucesso
+                    copySummaryBtn.innerHTML = '<i class="bi bi-check-lg"></i> Copiado!';
+                    setTimeout(() => {
+                        copySummaryBtn.innerHTML = '<i class="bi bi-clipboard"></i> Copiar Texto';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Falha ao copiar: ', err);
+                    alert('Não foi possível copiar o texto.');
+                });
+            }
+        });
+
+
+        // --- LÓGICA DE CORREÇÃO MÚLTIPLA ESCOLHA (Inalterada) ---
+        function buildResultsTable(results) {
+            if (!results || results.length === 0) return '<p>Não há resultados para exibir.</p>';
+            const numQuestions = results[0].details ? results[0].details.length : 0;
+            if (numQuestions === 0) {
+                return '<p>Os dados de resultado estão incompletos.</p>';
+            }
+            let htmlContent = '';
+            htmlContent += '<div class="table-responsive">';
+            htmlContent += '<table class="table table-bordered table-striped table-hover align-middle">';
+            htmlContent += '<thead class="table-dark">';
+            htmlContent += '<tr>';
+            htmlContent += '<th>Aluno</th>';
+            htmlContent += '<th>Nota</th>';
+            for (let i = 1; i <= numQuestions; i++) {
+                htmlContent += `<th>Q ${i}</th>`;
+            }
+            htmlContent += '</tr>';
+            htmlContent += '</thead>';
+            htmlContent += '<tbody>';
+            for (const student of results) {
+                htmlContent += '<tr>';
+                htmlContent += `<td class="student-name">${escapeHTML(student.fileName)}</td>`;
+                htmlContent += `<td><strong>${escapeHTML(student.grade)}</strong></td>`;
+                if (student.details) {
+                    for (const detail of student.details) {
+                        if (detail.correct) {
+                            htmlContent += '<td><i class="bi bi-check-circle-fill text-success"></i></td>';
+                        } else {
+                            htmlContent += '<td><i class="bi bi-x-circle-fill text-danger"></i></td>';
+                        }
+                    }
+                } else {
+                    htmlContent += `<td colspan="${numQuestions}">Dados indisponíveis</td>`;
+                }
+                htmlContent += '</tr>';
+            }
+            htmlContent += '</tbody>';
+            htmlContent += '</table>';
+            htmlContent += '</div>';
+            return htmlContent;
+        }
+        function pollVerificationStatus(jobId) {
+            verificationPollInterval = setInterval(async () => {
+                try {
+                    const response = await fetch(`https://voz-transcricao.onrender.com/status/${jobId}`);
+                    if (!response.ok) {
+                        throw new Error(`Falha ao consultar status: ${response.statusText}`);
+                    }
+                    const job = await response.json();
+                    if (job.status === 'processing') {
+                        const percent = job.progress || 0;
+                        progressBar.style.width = `${percent}%`;
+                        progressBar.innerText = `${percent}%`;
+                        progressBar.setAttribute('aria-valuenow', percent);
+                        progressText.innerText = job.message || 'Processando...';
+                    } else if (job.status === 'completed') {
+                        clearInterval(verificationPollInterval);
+                        verificationJobData = job.results.results; 
+                        progressContainer.classList.add('d-none');
+                        hideSpinner('verifyBtn');
+                        gradeResultDiv.innerHTML = '<button id="showResultsBtn" class="btn btn-success"><i class="bi bi-table"></i> Ver Resultados</button>';
+                        document.getElementById('showResultsBtn').addEventListener('click', () => {
+                            const tableHtml = buildResultsTable(verificationJobData);
+                            resultsModalBody.innerHTML = tableHtml;
+                            verifyModal.hide(); 
+                            resultsModal.show();
+                        });
+                    } else if (job.status === 'failed') {
+                        clearInterval(verificationPollInterval);
+                        progressContainer.classList.add('d-none');
+                        hideSpinner('verifyBtn');
+                        gradeResultDiv.innerHTML = `<p class="text-danger"><b>Erro:</b> ${job.error || 'Falha no processamento.'}</p>`;
+                        verifyBtn.disabled = false;
+                    }
+                } catch (error) {
+                    clearInterval(verificationPollInterval);
+                    console.error("Erro no polling:", error);
+                    hideSpinner('verifyBtn');
+                    gradeResultDiv.innerHTML = `<p class="text-danger"><b>Erro de comunicação:</b> ${error.message}</p>`;
+                    verifyBtn.disabled = false;
+                }
+            }, 2500); 
+        }
+        verifyBtn.addEventListener('click', async () => {
+            showSpinner('verifyBtn');
+            gradeResultDiv.innerHTML = ''; 
+            verificationJobData = null;
+            if (verificationPollInterval) {
+                clearInterval(verificationPollInterval);
+            }
+            progressContainer.classList.remove('d-none');
+            progressBar.style.width = '0%';
+            progressBar.innerText = '0%';
+            progressBar.setAttribute('aria-valuenow', 0);
+            progressText.innerText = 'Iniciando...';
+            const studentFiles = studentSheetFileInput.files;
+            const gabaritoString = teacherAnswers.value.trim(); 
+             if (studentFiles.length === 0) {
+                 alert('Por favor, envie pelo menos uma imagem do aluno.');
+                 hideSpinner('verifyBtn');
+                 progressContainer.classList.add('d-none'); 
+                 return;
+             }
+             if (!gabaritoString) {
+                 alert('Por favor, digite o gabarito (ex: A,B,C,D).');
+                 hideSpinner('verifyBtn');
+                 progressContainer.classList.add('d-none'); 
+                 return;
+             }
+             const formData = new FormData();
+             formData.append('gabarito', gabaritoString);
+             for (let i = 0; i < studentFiles.length; i++) {
+                 formData.append('studentSheet', studentFiles[i]);
+             }
+             console.log("Enviando dados para a verificação (Múlt. Escolha)...");
+             console.log("Gabarito:", gabaritoString);
+             console.log("Arquivos:", studentFiles.length);
+             try {
+                 const response = await fetch("https://voz-transcricao.onrender.com/start-verification", {
+                     method: 'POST',
+                     body: formData,
+                 });
+                 if (!response.ok) {
+                     const errorData = await response.json();
+                     throw new Error(errorData.error || 'Falha ao iniciar o trabalho.');
+                 }
+                 const { jobId } = await response.json();
+                 if (jobId) {
+                     pollVerificationStatus(jobId);
+                 } else {
+                     throw new Error("API não retornou um Job ID.");
+                 }
+             } catch (error) {
+                 console.error("Erro ao iniciar verificação:", error);
+                 hideSpinner('verifyBtn');
+                 progressContainer.classList.add('d-none');
+                 gradeResultDiv.innerHTML = `<p class="text-danger"><b>Erro:</b> ${error.message}</p>`;
+             }
+        });
+        verifyCancelBtn.addEventListener('click', () => {
+            if (verificationPollInterval) {
+                clearInterval(verificationPollInterval);
+            }
+            hideSpinner('verifyBtn');
+            progressContainer.classList.add('d-none');
+            gradeResultDiv.innerHTML = '';
+            verifyBtn.disabled = false;
+            studentSheetFileInput.value = '';
+            teacherAnswers.value = '';
+        });
+        verifyModalEl.addEventListener('hidden.bs.modal', () => {
+             if (verificationPollInterval) {
+                clearInterval(verificationPollInterval);
+            }
+            hideSpinner('verifyBtn');
+            progressContainer.classList.add('d-none');
+            gradeResultDiv.innerHTML = '';
+            verifyBtn.disabled = false;
+            studentSheetFileInput.value = '';
+            teacherAnswers.value = '';
+        });
+
+
+        // --- LÓGICA DE CORREÇÃO DE DISSERTATIVA (Inalterada) ---
+        function buildDissertativaResultsTable(results) {
+            if (!results || results.length === 0) return '<p>Não há resultados para exibir.</p>';
+            let htmlContent = '';
+            htmlContent += '<div class="table-responsive">';
+            htmlContent += '<table class="table table-bordered table-striped align-middle">';
+            htmlContent += '<thead class="table-dark">';
+            htmlContent += '<tr>';
+            htmlContent += '<th>Aluno</th>';
+            htmlContent += '<th>Nota</th>';
+            htmlContent += '<th>Feedback da IA</th>';
+            htmlContent += '</tr>';
+            htmlContent += '</thead>';
+            htmlContent += '<tbody>';
+            for (const student of results) {
+                htmlContent += '<tr>';
+                htmlContent += `<td class="student-name">${escapeHTML(student.fileName)}</td>`;
+                htmlContent += `<td><strong>${escapeHTML(student.nota)}</strong></td>`;
+                htmlContent += `<td style="text-align: left; white-space: pre-wrap;">${escapeHTML(student.feedback)}</td>`;
+                htmlContent += '</tr>';
+            }
+            htmlContent += '</tbody>';
+            htmlContent += '</table>';
+            htmlContent += '</div>';
+            return htmlContent;
+        }
+        function pollDissertativaStatus(jobId) {
+            dissertativaPollInterval = setInterval(async () => {
+                try {
+                    const response = await fetch(`https://voz-transcricao.onrender.com/status/${jobId}`);
+                    if (!response.ok) {
+                        throw new Error(`Falha ao consultar status: ${response.statusText}`);
+                    }
+                    const job = await response.json();
+                    if (job.status === 'processing') {
+                        const percent = job.progress || 0;
+                        dissertativaProgressBar.style.width = `${percent}%`;
+                        dissertativaProgressBar.innerText = `${percent}%`;
+                        dissertativaProgressBar.setAttribute('aria-valuenow', percent);
+                        dissertativaProgressText.innerText = job.message || 'Processando...';
+                    } else if (job.status === 'completed') {
+                        clearInterval(dissertativaPollInterval);
+                        dissertativaJobData = job.results.results; 
+                        dissertativaProgressContainer.classList.add('d-none');
+                        hideSpinner('corrigirDissertativaBtn');
+                        dissertativaGradeResult.innerHTML = '<button id="showDissertativaResultsBtn" class="btn btn-success"><i class="bi bi-table"></i> Ver Resultados</button>';
+                        document.getElementById('showDissertativaResultsBtn').addEventListener('click', () => {
+                            const tableHtml = buildDissertativaResultsTable(dissertativaJobData);
+                            dissertativaResultsModalBody.innerHTML = tableHtml;
+                            dissertativaModal.hide(); 
+                            dissertativaResultsModal.show();
+                        });
+                    } else if (job.status === 'failed') {
+                        clearInterval(dissertativaPollInterval);
+                        dissertativaProgressContainer.classList.add('d-none');
+                        hideSpinner('corrigirDissertativaBtn');
+                        dissertativaGradeResult.innerHTML = `<p class="text-danger"><b>Erro:</b> ${job.error || 'Falha no processamento.'}</p>`;
+                        corrigirDissertativaBtn.disabled = false;
+                    }
+                } catch (error) {
+                    clearInterval(dissertativaPollInterval);
+                    console.error("Erro no polling da dissertativa:", error);
+                    hideSpinner('corrigirDissertativaBtn');
+                    dissertativaGradeResult.innerHTML = `<p class="text-danger"><b>Erro de comunicação:</b> ${error.message}</p>`;
+                    corrigirDissertativaBtn.disabled = false;
+                }
+            }, 2500); 
+        }
+        corrigirDissertativaBtn.addEventListener('click', async () => {
+            showSpinner('corrigirDissertativaBtn');
+            dissertativaGradeResult.innerHTML = ''; 
+            dissertativaJobData = null;
+            if (dissertativaPollInterval) {
+                clearInterval(dissertativaPollInterval);
+            }
+            dissertativaProgressContainer.classList.remove('d-none');
+            dissertativaProgressBar.style.width = '0%';
+            dissertativaProgressBar.innerText = '0%';
+            dissertativaProgressBar.setAttribute('aria-valuenow', 0);
+            dissertativaProgressText.innerText = 'Iniciando...';
+
+            const studentFiles = studentAnswersFile.files;
+            const gabarito = gabaritoDissertativo.value.trim();
+            const criterios = criteriosAvaliacao.value.trim();
+            const notaMaxima = notaMaximaDissertativa.value;
+
+             if (studentFiles.length === 0) {
+                 alert('Por favor, envie pelo menos uma imagem da prova do aluno.');
+                 hideSpinner('corrigirDissertativaBtn');
+                 dissertativaProgressContainer.classList.add('d-none'); 
+                 return;
+             }
+             if (!gabarito || !criterios || !notaMaxima) {
+                 alert('Por favor, preencha a Resposta Esperada, os Critérios e a Nota Máxima.');
+                 hideSpinner('corrigirDissertativaBtn');
+                 dissertativaProgressContainer.classList.add('d-none'); 
+                 return;
+             }
+             
+             const formData = new FormData();
+             formData.append('gabaritoDissertativo', gabarito);
+             formData.append('criteriosAvaliacao', criterios);
+             formData.append('notaMaxima', notaMaxima);
+             
+             for (let i = 0; i < studentFiles.length; i++) {
+                 formData.append('studentSheet', studentFiles[i]);
+             }
+             
+             console.log("Enviando dados para a correção dissertativa...");
+             
+             try {
+                 const response = await fetch("https://voz-transcricao.onrender.com/start-dissertativa-correction", {
+                     method: 'POST',
+                     body: formData,
+                 });
+                 if (!response.ok) {
+                     const errorData = await response.json();
+                     throw new Error(errorData.error || 'Falha ao iniciar o trabalho.');
+                 }
+                 const { jobId } = await response.json();
+                 if (jobId) {
+                     pollDissertativaStatus(jobId);
+                 } else {
+                     throw new Error("API não retornou um Job ID.");
+                 }
+             } catch (error) {
+                 console.error("Erro ao iniciar correção dissertativa:", error);
+                 hideSpinner('corrigirDissertativaBtn');
+                 dissertativaProgressContainer.classList.add('d-none');
+                 dissertativaGradeResult.innerHTML = `<p class="text-danger"><b>Erro:</b> ${error.message}</p>`;
+             }
+        });
+        function resetDissertativaModal() {
+            if (dissertativaPollInterval) {
+                clearInterval(dissertativaPollInterval);
+            }
+            hideSpinner('corrigirDissertativaBtn');
+            dissertativaProgressContainer.classList.add('d-none');
+            dissertativaGradeResult.innerHTML = '';
+            corrigirDissertativaBtn.disabled = false;
+            studentAnswersFile.value = '';
+            gabaritoDissertativo.value = '';
+            criteriosAvaliacao.value = '';
+            notaMaximaDissertativa.value = '10';
+        }
+        dissertativaCancelBtn.addEventListener('click', resetDissertativaModal);
+        dissertativaModalEl.addEventListener('hidden.bs.modal', resetDissertativaModal);
+
+        // --- Event Listener do Tutorial ---
+        if (tutorialBtn) { 
+            tutorialBtn.addEventListener('click', () => {
+                tutorialModal.show(); 
+            });
+        }
+
+    }); // <<< FIM DO 'DOMContentLoaded'
   </script>
 </body>
 </html>
-
