@@ -431,6 +431,24 @@
     </div>
   </div>
 
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger" id="errorModalLabel">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>Atenção!
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="errorModalBody">
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -465,7 +483,6 @@
 
         // --- Seletores (Múltipla Escolha) ---
         const verifyBtn = document.getElementById('verifyBtn');
-        // teacherKeyFileInput foi removido
         const studentSheetFileInput = document.getElementById('studentSheetFile');
         const gradeResultDiv = document.getElementById('gradeResult');
         const verifyModalEl = document.getElementById('verifyModal'); 
@@ -498,6 +515,11 @@
         const dissertativaResultsModalBody = document.getElementById('dissertativaResultsModalBody');
         const downloadCsvDissertativeBtn = document.getElementById('downloadCsvDissertative');
 
+        // --- Seletor (Modal de Erro) ---
+        const errorModalEl = document.getElementById('errorModal');
+        const errorModal = new bootstrap.Modal(errorModalEl);
+        const errorModalBody = document.getElementById('errorModalBody');
+
         // --- Variáveis de Estado ---
         let mediaRecorder, recordedChunks = [], recordedBlob;
         let audioContext, analyser, source, dataArray;
@@ -524,6 +546,12 @@
                 const spinner = button.querySelector('.spinner-border');
                 if (spinner) spinner.classList.add('d-none');
             }
+        }
+        
+        // --- Função de Alerta Personalizado ---
+        function showErrorAlert(message) {
+            errorModalBody.textContent = message;
+            errorModal.show();
         }
 
         // --- Funções de Gravação, Timer, etc. ---
@@ -613,7 +641,7 @@
                     recordBtn.innerHTML = '<i class="bi bi-pause-fill"></i>Pausar';
                     recordBtn.classList.replace("btn-success", "btn-warning");
                     stopBtn.disabled = false;
-                } catch (err) { alert("Não foi possível iniciar a gravação. Verifique as permissões do microfone."); }
+                } catch (err) { showErrorAlert("Não foi possível iniciar a gravação. Verifique as permissões do microfone."); }
             } else if (!isPaused) {
                 mediaRecorder.pause(); stopTimer(); isPaused = true;
                 recordBtn.innerHTML = '<i class="bi bi-play-fill"></i>Retomar';
@@ -640,7 +668,7 @@
             }
         });
         transcribeBtn.addEventListener("click", () => {
-            if (!recordedBlob) return alert("Grave ou envie um arquivo de áudio primeiro!");
+            if (!recordedBlob) return showErrorAlert("Grave ou envie um arquivo de áudio primeiro!");
             sendAudioForTranscription(recordedBlob);
         });
         async function sendAudioForTranscription(file) {
@@ -700,7 +728,7 @@
             showSpinner('generateActivityBtn');
             const summaryText = summaryArea.value;
              if (!summaryText.trim()) {
-                   alert("É preciso ter um resumo para criar uma atividade!");
+                   showErrorAlert("É preciso ter um resumo para criar uma atividade!");
                    hideSpinner('generateActivityBtn');
                    return;
              }
@@ -721,7 +749,7 @@
                  if (!response.ok) throw new Error('Falha no servidor ao gerar atividade.');
                  const { activityText, answers } = await response.json();
                  if (options.type === 'dissertativa' || !answers || answers.length === 0) {
-                      if(options.type !== 'dissertativa') alert("Atenção: O gabarito não foi retornado. Apenas o PDF do aluno será gerado.");
+                      if(options.type !== 'dissertativa') showErrorAlert("Atenção: O gabarito não foi retornado. Apenas o PDF do aluno será gerado.");
                       const studentDoc = generatePdf("Atividade_Aluno", activityText, options, null);
                       if (studentDoc) studentDoc.save("Atividade_Aluno.pdf");
                  } else {
@@ -730,7 +758,7 @@
                   activityModal.hide();
              } catch (error) {
                    console.error("Erro ao gerar atividade:", error);
-                  alert("Ocorreu um erro ao gerar a atividade.");
+                  showErrorAlert("Ocorreu um erro ao gerar a atividade.");
              } finally {
                    hideSpinner('generateActivityBtn');
              }
@@ -739,7 +767,7 @@
             const studentDoc = generatePdf("Atividade para o Aluno", activityText, options, null);
             const teacherDoc = generatePdf("Gabarito para o Professor", activityText, options, answers);
             if (!studentDoc || !teacherDoc) {
-                 alert("Falha ao gerar um dos PDFs.");
+                 showErrorAlert("Falha ao gerar um dos PDFs.");
                  return;
             }
             const zip = new JSZip();
@@ -826,7 +854,7 @@
         downloadTranscriptionBtn.addEventListener("click", () => {
             const textToDownload = transcriptionArea.value; 
             if (!textToDownload || !textToDownload.trim()){
-                alert("Não há transcrição para baixar.");
+                showErrorAlert("Não há transcrição para baixar.");
                 return;
             }
             const doc = generatePdf("Transcricao", textToDownload, {});
@@ -835,7 +863,7 @@
         downloadSummaryBtn.addEventListener("click", () => {
              const textToDownload = summaryArea.value; 
             if (!textToDownload || !textToDownload.trim()){
-                alert("Não há resumo para baixar.");
+                showErrorAlert("Não há resumo para baixar.");
                 return;
             }
             const doc = generatePdf("Resumo", textToDownload, {});
@@ -864,12 +892,12 @@
                     }, 2000);
                 }).catch(err => {
                     console.error('Falha ao copiar: ', err);
-                    alert('Não foi possível copiar o texto.');
+                    showErrorAlert('Não foi possível copiar o texto.');
                 });
             } else if (!textToCopy) {
-                alert('Não há nada para copiar.');
+                showErrorAlert('Não há nada para copiar.');
             } else {
-                alert('A cópia não é suportada neste navegador (provavelmente http).');
+                showErrorAlert('A cópia não é suportada neste navegador (provavelmente http).');
             }
         });
         copySummaryBtn.addEventListener("click", () => {
@@ -882,12 +910,12 @@
                     }, 2000);
                 }).catch(err => {
                     console.error('Falha ao copiar: ', err);
-                    alert('Não foi possível copiar o texto.');
+                    showErrorAlert('Não foi possível copiar o texto.');
                 });
             } else if (!textToCopy) {
-                alert('Não há nada para copiar.');
+                showErrorAlert('Não há nada para copiar.');
             } else {
-                alert('A cópia não é suportada neste navegador (provavelmente http).');
+                showErrorAlert('A cópia não é suportada neste navegador (provavelmente http).');
             }
         });
 
@@ -947,7 +975,7 @@
             document.body.removeChild(link);
         }
 
-        // --- LÓGICA DE CORREÇÃO MÚLTIPLA ESCOLHA (Restaurada para PDF) ---
+        // --- LÓGICA DE CORREÇÃO MÚLTIPLA ESCOLHA (Lógica de GABARITO EM TEXTO) ---
         function buildResultsTable(results) {
             if (!results || results.length === 0) return '<p>Não há resultados para exibir.</p>';
             const numQuestions = results[0].details ? results[0].details.length : 0;
@@ -1031,7 +1059,7 @@
                 }
             }, 2500); 
         }
-        // Listener "Verificar Nota" (Restaurado para PDF)
+        // Listener "Verificar Nota" (Lógica de GABARITO EM TEXTO)
         verifyBtn.addEventListener('click', async () => {
             showSpinner('verifyBtn');
             gradeResultDiv.innerHTML = ''; 
@@ -1044,24 +1072,31 @@
             progressBar.innerText = '0%';
             progressBar.setAttribute('aria-valuenow', 0);
             progressText.innerText = 'Iniciando...';
-
-            const teacherKeyFile = teacherKeyFileInput.files[0]; // <-- Lógica do PDF
+            
             const studentFiles = studentSheetFileInput.files;
+            const gabaritoString = teacherAnswers.value.trim(); 
 
-             if (!teacherKeyFile || studentFiles.length === 0) { // <-- Lógica do PDF
-                 alert('Por favor, envie o PDF do professor e pelo menos uma imagem do aluno.');
+             if (studentFiles.length === 0) {
+                 showErrorAlert('Por favor, envie pelo menos uma imagem do aluno.');
+                 hideSpinner('verifyBtn');
+                 progressContainer.classList.add('d-none'); 
+                 return;
+             }
+             if (!gabaritoString) {
+                 showErrorAlert('Por favor, digite o gabarito (ex: A,B,C,D).');
                  hideSpinner('verifyBtn');
                  progressContainer.classList.add('d-none'); 
                  return;
              }
              
              const formData = new FormData();
-             formData.append('teacherKey', teacherKeyFile); // <-- Lógica do PDF
+             formData.append('gabarito', gabaritoString);
              for (let i = 0; i < studentFiles.length; i++) {
                  formData.append('studentSheet', studentFiles[i]);
              }
              
-             console.log("Enviando dados para a verificação (Múlt. Escolha com PDF)...");
+             console.log("Enviando dados para a verificação (Múlt. Escolha com Texto)...");
+             console.log("Gabarito:", gabaritoString);
              console.log("Arquivos:", studentFiles.length);
 
              try {
@@ -1086,7 +1121,7 @@
                  gradeResultDiv.innerHTML = `<p class="text-danger"><b>Erro:</b> ${error.message}</p>`;
              }
         });
-        // Listener do botão Cancelar (Restaurado para PDF)
+        // Listener do botão Cancelar (Lógica de GABARITO EM TEXTO)
         verifyCancelBtn.addEventListener('click', () => {
             if (verificationPollInterval) {
                 clearInterval(verificationPollInterval);
@@ -1096,9 +1131,9 @@
             gradeResultDiv.innerHTML = '';
             verifyBtn.disabled = false;
             studentSheetFileInput.value = '';
-            teacherKeyFileInput.value = ''; // <-- Lógica do PDF
+            teacherAnswers.value = ''; // Limpa o campo de texto
         });
-        // Listener de fechar modal (Restaurado para PDF)
+        // Listener de fechar modal (Lógica de GABARITO EM TEXTO)
         verifyModalEl.addEventListener('hidden.bs.modal', () => {
              if (verificationPollInterval) {
                 clearInterval(verificationPollInterval);
@@ -1108,7 +1143,7 @@
             gradeResultDiv.innerHTML = '';
             verifyBtn.disabled = false;
             studentSheetFileInput.value = '';
-            teacherKeyFileInput.value = ''; // <-- Lógica do PDF
+            teacherAnswers.value = ''; // Limpa o campo de texto
         });
         // Listener de Download CSV (Múlt. Escolha)
         downloadCsvObjectiveBtn.addEventListener('click', () => {
@@ -1116,12 +1151,12 @@
                 const csvString = generateObjectiveCSV(verificationJobData);
                 downloadCSV(csvString, 'correcao_objetiva.csv');
             } else {
-                alert("Não há dados de correção para baixar.");
+                showErrorAlert("Não há dados de correção para baixar.");
             }
         });
 
 
-        // --- LÓGICA DE CORREÇÃO DE DISSERTATIVA (Inalterada) ---
+        // --- LÓGICA DE CORREÇÃO DE DISSERTATIVA ---
         function buildDissertativaResultsTable(results) {
             if (!results || results.length === 0) return '<p>Não há resultados para exibir.</p>';
             let htmlContent = '';
@@ -1208,13 +1243,13 @@
             const notaMaxima = notaMaximaDissertativa.value;
 
              if (studentFiles.length === 0) {
-                 alert('Por favor, envie pelo menos uma imagem da prova do aluno.');
+                 showErrorAlert('Por favor, envie pelo menos uma imagem da prova do aluno.');
                  hideSpinner('corrigirDissertativaBtn');
                  dissertativaProgressContainer.classList.add('d-none'); 
                  return;
              }
              if (!gabarito || !criterios || !notaMaxima) {
-                 alert('Por favor, preencha a Resposta Esperada, os Critérios e a Nota Máxima.');
+                 showErrorAlert('Por favor, preencha a Resposta Esperada, os Critérios e a Nota Máxima.');
                  hideSpinner('corrigirDissertativaBtn');
                  dissertativaProgressContainer.classList.add('d-none'); 
                  return;
@@ -1268,13 +1303,14 @@
         }
         dissertativaCancelBtn.addEventListener('click', resetDissertativaModal);
         dissertativaModalEl.addEventListener('hidden.bs.modal', resetDissertativaModal);
+        
         // Listener de Download CSV (Dissertativa)
         downloadCsvDissertativeBtn.addEventListener('click', () => {
             if (dissertativaJobData) {
                 const csvString = generateDissertativeCSV(dissertativaJobData);
                 downloadCSV(csvString, 'correcao_dissertativa.csv');
             } else {
-                alert("Não há dados de correção para baixar.");
+                showErrorAlert("Não há dados de correção para baixar.");
             }
         });
 
