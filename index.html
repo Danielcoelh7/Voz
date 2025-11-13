@@ -279,7 +279,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-           <p class="text-muted">Envie as respostas do aluno e o gabarito para correção automática.</p>
+           <p class="text-muted">Envie as respostas do aluno e digite o gabarito para correção automática.</p>
           <div class="mb-3">
             <label for="studentSheetFile" class="form-label fw-bold">1. Imagem(ns) do Aluno:</label>
             <input type="file" id="studentSheetFile" class="form-control" accept="image/*" multiple>
@@ -310,42 +310,6 @@
     </div>
   </div>
   
-  <div class="modal fade" id="tutorialModal" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg"> 
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="tutorialModalLabel"><i class="bi bi-info-circle-fill me-2"></i>Como Usar o NeuroVoz</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h6>Passo 1: Forneça o Áudio</h6>
-          <ul>
-            <li><strong>Gravando:</strong> Clique no botão verde <button class="btn btn-sm btn-success disabled"><i class="bi bi-mic-fill"></i>Gravar</button>. Fale o que desejar. Clique em <button class="btn btn-sm btn-danger disabled"><i class="bi bi-stop-fill"></i>Parar</button> quando terminar.</li>
-            <li><strong>Enviando Arquivo:</strong> Clique em "Escolher arquivo", selecione um arquivo de áudio (MP3, WAV, etc.) do seu computador.</li>
-          </ul>
-          <hr>
-          <h6>Passo 2: Processe o Áudio</h6>
-          <ul>
-            <li>Clique no botão azul <button class="btn btn-sm btn-primary disabled"><i class="bi bi-cpu-fill"></i>Transcrever e Resumir</button>.</li>
-            <li>Aguarde o processamento. O texto aparecerá nas caixas "Transcrição" e "Resumo em Tópicos".</li>
-          </ul>
-          <hr>
-          <h6>Passo 3: Use os Resultados</h6>
-          <p>Com a transcrição e o resumo prontos, você pode:</p>
-          <ul>
-            <li><strong>Copiar/Baixar:</strong> Use os botões <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-clipboard"></i> Copiar</button> ou <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-download"></i>Baixar</button> localizados abaixo de cada caixa de texto.</li>
-            <li><strong>Gerar Atividade:</strong> Clique em <button class="btn btn-sm btn-outline-info disabled"><i class="bi bi-journal-plus"></i>Gerar Atividade</button>, configure as opções (tipo, dificuldade, etc.) e clique em "Gerar PDF" para criar uma atividade baseada no resumo.</li>
-            <li><strong>Corrigir Múlt. Escolha:</strong> Clique em <button class="btn btn-sm btn-outline-warning disabled"><i class="bi bi-check2-square"></i>Corrigir Múlt. Escolha</button>, envie a(s) foto(s) da folha do aluno, **digite o gabarito (ex: A,B,C)**, e clique em "Verificar Nota" para obter a correção automática.</li>
-            <li><strong>Corrigir Dissertativa:</strong> Clique em <button class="btn btn-sm btn-outline-success disabled"><i class="bi bi-pen"></i> Corrigir Dissertativa</button>, envie a(s) foto(s) da prova, **digite a resposta esperada** e os **critérios de avaliação**.</li>
-          </ul>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="modal fade" id="resultsModal" tabindex="-1" aria-labelledby="resultsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
@@ -444,6 +408,42 @@
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="tutorialModal" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"> 
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tutorialModalLabel"><i class="bi bi-info-circle-fill me-2"></i>Como Usar o NeuroVoz</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h6>Passo 1: Forneça o Áudio</h6>
+          <ul>
+            <li><strong>Gravando:</strong> Clique no botão verde <button class="btn btn-sm btn-success disabled"><i class="bi bi-mic-fill"></i>Gravar</button>. Fale o que desejar. Clique em <button class="btn btn-sm btn-danger disabled"><i class="bi bi-stop-fill"></i>Parar</button> quando terminar.</li>
+            <li><strong>Enviando Arquivo:</strong> Clique em "Escolher arquivo", selecione um arquivo de áudio (MP3, WAV, etc.) do seu computador.</li>
+          </ul>
+          <hr>
+          <h6>Passo 2: Processe o Áudio</h6>
+          <ul>
+            <li>Clique no botão azul <button class="btn btn-sm btn-primary disabled"><i class="bi bi-cpu-fill"></i>Transcrever e Resumir</button>.</li>
+            <li>Aguarde o processamento. O texto aparecerá nas caixas "Transcrição" e "Resumo em Tópicos".</li>
+          </ul>
+          <hr>
+          <h6>Passo 3: Use os Resultados</h6>
+          <p>Com a transcrição e o resumo prontos, você pode:</p>
+          <ul>
+            <li><strong>Copiar/Baixar:</strong> Use os botões <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-clipboard"></i> Copiar</button> ou <button class="btn btn-sm btn-outline-secondary disabled"><i class="bi bi-download"></i>Baixar</button> localizados abaixo de cada caixa de texto.</li>
+            <li><strong>Gerar Atividade:</strong> Clique em <button class="btn btn-sm btn-outline-info disabled"><i class="bi bi-journal-plus"></i>Gerar Atividade</button>, configure as opções (tipo, dificuldade, etc.) e clique em "Gerar PDF" para criar uma atividade baseada no resumo.</li>
+            <li><strong>Corrigir Múlt. Escolha:</strong> Clique em <button class="btn btn-sm btn-outline-warning disabled"><i class="bi bi-check2-square"></i>Corrigir Múlt. Escolha</button>, envie a(s) foto(s) da folha do aluno, **digite o gabarito (ex: A,B,C)**, e clique em "Verificar Nota" para obter a correção automática.</li>
+            <li><strong>Corrigir Dissertativa:</strong> Clique em <button class="btn btn-sm btn-outline-success disabled"><i class="bi bi-pen"></i> Corrigir Dissertativa</button>, envie a(s) foto(s) da prova, **digite a resposta esperada** e os **critérios de avaliação**.</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi!</button>
         </div>
       </div>
     </div>
@@ -548,13 +548,12 @@
             }
         }
         
-        // --- Função de Alerta Personalizado ---
         function showErrorAlert(message) {
             errorModalBody.textContent = message;
             errorModal.show();
         }
 
-        // --- Funções de Gravação, Timer, etc. ---
+        // ... Funções de Gravação e Timer (Mantidas igual ao anterior) ...
         function startTimer() {
             timerInterval = setInterval(() => {
                 seconds++;
@@ -720,7 +719,7 @@
             }, 3000);
         }
         
-        // --- Lógica do Gerador de Atividades ---
+        // --- Lógica do Gerador de Atividades (Mantida igual) ---
         activityType.addEventListener('change', () => {
             objectiveFormatGroup.classList.toggle('d-none', activityType.value !== 'objetiva');
         });
@@ -869,8 +868,6 @@
             const doc = generatePdf("Resumo", textToDownload, {});
             if (doc) doc.save("Resumo.pdf");
         });
-        
-        // --- Função Auxiliar "escapeHTML" ---
         function escapeHTML(str) {
             if (!str) return '';
             return str.toString()
@@ -880,8 +877,6 @@
                  .replace(/"/g, "&quot;")
                  .replace(/'/g, "&#039;");
         }
-        
-        // --- Lógica de Copiar ---
         copyTranscriptionBtn.addEventListener("click", () => {
             const textToCopy = transcriptionArea.value;
             if (textToCopy && navigator.clipboard) {
@@ -918,8 +913,6 @@
                 showErrorAlert('A cópia não é suportada neste navegador (provavelmente http).');
             }
         });
-
-        // --- Funções de Download CSV ---
         function escapeCsvField(field) {
             if (field === null || field === undefined) {
                 return '';
@@ -933,9 +926,11 @@
         function generateObjectiveCSV(data) {
             if (!data || data.length === 0) return "";
             const headers = ["Aluno", "Nota"];
-            const numQuestions = data[0].details.length;
-            for (let i = 1; i <= numQuestions; i++) {
-                headers.push(`Q ${i}`);
+            const numQuestions = data[0].details ? data[0].details.length : 0; 
+            if (numQuestions > 0) {
+                for (let i = 1; i <= numQuestions; i++) {
+                    headers.push(`Q ${i}`);
+                }
             }
             let csvRows = [headers.join(',')]; 
             for (const student of data) {
@@ -943,8 +938,10 @@
                     escapeCsvField(student.fileName),
                     escapeCsvField(student.grade)
                 ];
-                for (const detail of student.details) {
-                    row.push(detail.correct ? "ACERTOU" : "ERROU");
+                if (student.details) {
+                    for (const detail of student.details) {
+                        row.push(detail.correct ? "ACERTOU" : "ERROU");
+                    }
                 }
                 csvRows.push(row.join(','));
             }
@@ -975,7 +972,7 @@
             document.body.removeChild(link);
         }
 
-        // --- LÓGICA DE CORREÇÃO MÚLTIPLA ESCOLHA (Lógica de GABARITO EM TEXTO) ---
+        // --- LÓGICA DE CORREÇÃO MÚLTIPLA ESCOLHA (GABARITO EM TEXTO) ---
         function buildResultsTable(results) {
             if (!results || results.length === 0) return '<p>Não há resultados para exibir.</p>';
             const numQuestions = results[0].details ? results[0].details.length : 0;
@@ -1059,7 +1056,7 @@
                 }
             }, 2500); 
         }
-        // Listener "Verificar Nota" (Lógica de GABARITO EM TEXTO)
+        // Listener "Verificar Nota" (GABARITO EM TEXTO)
         verifyBtn.addEventListener('click', async () => {
             showSpinner('verifyBtn');
             gradeResultDiv.innerHTML = ''; 
@@ -1072,12 +1069,12 @@
             progressBar.innerText = '0%';
             progressBar.setAttribute('aria-valuenow', 0);
             progressText.innerText = 'Iniciando...';
-            
+
             const studentFiles = studentSheetFileInput.files;
             const gabaritoString = teacherAnswers.value.trim(); 
 
              if (studentFiles.length === 0) {
-                 showErrorAlert('Por favor, envie pelo menos uma imagem do aluno.');
+                 showErrorAlert('Por favor, envie pelo menos uma imagem do aluno.'); 
                  hideSpinner('verifyBtn');
                  progressContainer.classList.add('d-none'); 
                  return;
@@ -1121,7 +1118,7 @@
                  gradeResultDiv.innerHTML = `<p class="text-danger"><b>Erro:</b> ${error.message}</p>`;
              }
         });
-        // Listener do botão Cancelar (Lógica de GABARITO EM TEXTO)
+        // Listener do botão Cancelar
         verifyCancelBtn.addEventListener('click', () => {
             if (verificationPollInterval) {
                 clearInterval(verificationPollInterval);
@@ -1131,9 +1128,9 @@
             gradeResultDiv.innerHTML = '';
             verifyBtn.disabled = false;
             studentSheetFileInput.value = '';
-            teacherAnswers.value = ''; // Limpa o campo de texto
+            teacherAnswers.value = ''; 
         });
-        // Listener de fechar modal (Lógica de GABARITO EM TEXTO)
+        // Listener de fechar modal
         verifyModalEl.addEventListener('hidden.bs.modal', () => {
              if (verificationPollInterval) {
                 clearInterval(verificationPollInterval);
@@ -1143,7 +1140,7 @@
             gradeResultDiv.innerHTML = '';
             verifyBtn.disabled = false;
             studentSheetFileInput.value = '';
-            teacherAnswers.value = ''; // Limpa o campo de texto
+            teacherAnswers.value = ''; 
         });
         // Listener de Download CSV (Múlt. Escolha)
         downloadCsvObjectiveBtn.addEventListener('click', () => {
@@ -1156,7 +1153,7 @@
         });
 
 
-        // --- LÓGICA DE CORREÇÃO DE DISSERTATIVA ---
+        // --- LÓGICA DE CORREÇÃO DE DISSERTATIVA (Mantida igual) ---
         function buildDissertativaResultsTable(results) {
             if (!results || results.length === 0) return '<p>Não há resultados para exibir.</p>';
             let htmlContent = '';
